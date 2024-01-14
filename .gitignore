@@ -7,5 +7,4 @@
 .import/
 export.cfg
 export_presets.cfg
-game/models/characters/undead_1/undead_1.glb
-models_sources/characters/player/player.ccProject
+sources/models/characters/player/player.ccProject

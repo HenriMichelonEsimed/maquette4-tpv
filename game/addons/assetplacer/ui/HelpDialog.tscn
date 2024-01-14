@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://4cb3fnwhss80"]
+
+[ext_resource type="Script" path="res://addons/assetplacer/ui/ShortcutTable.cs" id="1_1bn7e"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/HelpDialog.cs" id="1_xcky1"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/LinkButton.cs" id="2_noe4u"]
+
+[node name="HelpDialog" type="AcceptDialog"]
+title = "Help"
+size = Vector2i(500, 450)
+script = ExtResource("1_xcky1")
+_documentationButtonPath = NodePath("MarginContainer/VBoxContainer/LinkList/DocumentationButton")
+_issueButtonPath = NodePath("MarginContainer/VBoxContainer/LinkList/IssueButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 492.0
+offset_bottom = 401.0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LinkList" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DocumentationButton" type="Button" parent="MarginContainer/VBoxContainer/LinkList"]
+layout_mode = 2
+text = "Documentation"
+script = ExtResource("2_noe4u")
+themeIcon = "Help"
+url = "https://cookiebadger.github.io/assetplacer-docs/"
+
+[node name="IssueButton" type="Button" parent="MarginContainer/VBoxContainer/LinkList"]
+layout_mode = 2
+text = "Report an Issue"
+script = ExtResource("2_noe4u")
+url = "https://github.com/CookieBadger/assetplacer-docs/issues/new"
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Shortcuts"
+
+[node name="ShortcutsTable" type="GridContainer" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/v_separation = 16
+columns = 2
+script = ExtResource("1_1bn7e")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/VBoxContainer/ShortcutsTable"]
+layout_mode = 2
+text = "Cell1"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/VBoxContainer/ShortcutsTable"]
+layout_mode = 2
+text = "Cell2"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/VBoxContainer/ShortcutsTable"]
+layout_mode = 2
+text = "Cell3"
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/VBoxContainer/ShortcutsTable"]
+layout_mode = 2
+text = "Cell4"

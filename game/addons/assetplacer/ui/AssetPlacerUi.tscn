@@ -1,0 +1,665 @@
+[gd_scene load_steps=22 format=3 uid="uid://ocxipybus2b7"]
+
+[ext_resource type="Script" path="res://addons/assetplacer/ui/AssetPlacerUi.cs" id="1_mrwxe"]
+[ext_resource type="Theme" uid="uid://cdejano5l8vrj" path="res://addons/assetplacer/ui/NormalButton.tres" id="2_4g484"]
+[ext_resource type="Theme" uid="uid://b21iaei3olt8o" path="res://addons/assetplacer/ui/SelectedButton.tres" id="3_fk7el"]
+[ext_resource type="PackedScene" uid="uid://b4i54pft0an" path="res://addons/assetplacer/ui/AssetPlacerButton.tscn" id="4_njn6w"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/SaveAssetLibraryDialog.cs" id="5_3qhrn"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/RightClickPopup.cs" id="5_ppeht"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/AssetDropPanel.cs" id="6_43del"]
+[ext_resource type="PackedScene" uid="uid://4cb3fnwhss80" path="res://addons/assetplacer/ui/HelpDialog.tscn" id="7_4kydg"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/SnappingUi.cs" id="7_15sxk"]
+[ext_resource type="PackedScene" uid="uid://hwjjgutgbwkt" path="res://addons/assetplacer/ui/AboutDialog.tscn" id="7_ubwky"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/PlacementUi.cs" id="8_0wcyv"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/TagLabel.cs" id="9_b58pj"]
+[ext_resource type="PackedScene" uid="uid://dod1gdi7s27cy" path="res://addons/assetplacer/ui/NodePathSelectorUi.tscn" id="10_pa7u5"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/EditorLineEdit.gd" id="12_y6nck"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvgly"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tm7nb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mqlns"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f6yvs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdpag"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7uvq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kt431"]
+
+[node name="AssetPlacerContainer" type="PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_type_variation = &"ControlEditorPopupPanel"
+script = ExtResource("1_mrwxe")
+dropPanel = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel")
+assetGrid = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control/PanelContainer/ScrollContainer/HFlowContainer")
+assetButtonRightClickPopup = NodePath("AssetButtonRightClickPopup")
+brokenAssetButtonRightClickPopup = NodePath("BrokenAssetButtonRightClickPopup")
+tabRightClickPopup = NodePath("TabRightClickPopup")
+snappingUiPath = NodePath("HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer")
+spawnParentSelectionUiPath = NodePath("HBoxContainer/ScrollContainer/VBoxContainer/SpawnParentSelectorUi")
+assetButtonSizeSlider = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons/AssetButtonSizeSlider")
+placementUiPath = NodePath("HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi")
+saveButtonPath = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons/SaveButton")
+libraryTabBarPath = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/HBoxContainer/LibraryTabBar")
+addLibraryButton = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/HBoxContainer/AddLibraryButton")
+loadButtonPath = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons/LoadButton")
+loadAssetLibraryDialogPath = NodePath("AssetLibraryLoadDialog")
+saveAssetLibraryDialogPath = NodePath("AssetLibrarySaveDialog")
+helpDialog = NodePath("HelpDialog")
+helpButton = NodePath("HBoxContainer/ScrollContainer/VBoxContainer/Title Section/HelpButton")
+aboutDialog = NodePath("AboutDialog")
+aboutButton = NodePath("HBoxContainer/ScrollContainer/VBoxContainer/Title Section/AboutButton")
+toExternalWindowButton = NodePath("HBoxContainer/ScrollContainer/VBoxContainer/Title Section/ExternalWindowButton")
+matchSelectedButton = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer/MatchSelectedButton")
+buttonTheme = ExtResource("2_4g484")
+selectionTheme = ExtResource("3_fk7el")
+assetPlacerButton = ExtResource("4_njn6w")
+assetPaletteScrollContainer = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control/PanelContainer/ScrollContainer")
+assetPaletteFilterLineEdit = NodePath("HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer/FilterLineEdit")
+
+[node name="AssetLibraryLoadDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(600, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.tres")
+
+[node name="AssetLibrarySaveDialog" type="FileDialog" parent="."]
+size = Vector2i(600, 400)
+ok_button_text = "Save"
+access = 1
+filters = PackedStringArray("*.tres")
+script = ExtResource("5_3qhrn")
+
+[node name="AssetButtonRightClickPopup" type="PopupMenu" parent="."]
+size = Vector2i(100, 8)
+script = ExtResource("5_ppeht")
+
+[node name="BrokenAssetButtonRightClickPopup" type="PopupMenu" parent="."]
+size = Vector2i(100, 8)
+script = ExtResource("5_ppeht")
+
+[node name="TabRightClickPopup" type="PopupMenu" parent="."]
+size = Vector2i(100, 8)
+script = ExtResource("5_ppeht")
+
+[node name="AboutDialog" parent="." instance=ExtResource("7_ubwky")]
+
+[node name="HelpDialog" parent="." instance=ExtResource("7_4kydg")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="Title Section" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/Title Section"]
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "AssetPlacer ##version## for Godot ##godotversion##. "
+vertical_alignment = 1
+script = ExtResource("9_b58pj")
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer/ScrollContainer/VBoxContainer/Title Section"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kvgly")
+
+[node name="HelpButton" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/Title Section"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Help"
+
+[node name="AboutButton" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/Title Section"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "About"
+
+[node name="ExternalWindowButton" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/Title Section"]
+layout_mode = 2
+tooltip_text = "Make AssetPlacer floating"
+theme_override_font_sizes/font_size = 12
+text = "Ext"
+flat = true
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tm7nb")
+
+[node name="SpawnParentSelectorUi" parent="HBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("10_pa7u5")]
+layout_mode = 2
+defaultAssignRoot = true
+
+[node name="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SpawnParentSelectorUi" index="0"]
+text = "Spawn under: "
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tm7nb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlacementModeLabel" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Placement mode:"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Define which way you want to place assets:
+Plane: Assets are placed on a plane orthogonal to the X,Y or Z axis.
+Surface: Assets are placed on surfaces. Note that this works only for objects with physics collision bodies (Layers can be specified in the Project Settings -> General/Asset Placer/Settings\")"
+item_count = 2
+selected = 0
+popup/item_0/text = "Plane"
+popup/item_0/id = 0
+popup/item_1/text = "Surface"
+popup/item_1/id = 1
+
+[node name="Terrain3DSelectorUi" parent="HBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("10_pa7u5")]
+layout_mode = 2
+classType = "Terrain3D"
+
+[node name="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/Terrain3DSelectorUi" index="0"]
+text = "Terrain3D Node: "
+
+[node name="PlacementModeUi" type="PanelContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mqlns")
+script = ExtResource("8_0wcyv")
+placementModeOptionButton = NodePath("../HBoxContainer/OptionButton")
+planeOptionButton = NodePath("PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer/OptionButton")
+planePositionLineEdit = NodePath("PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/PlanePosLineEdit")
+positionFromSelectedButton = NodePath("PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/HBoxContainer/HBoxContainer2/SelectedNode")
+resetPositionButton = NodePath("PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/HBoxContainer/HBoxContainer2/Reset")
+alignToSurfaceNormalCheckbox = NodePath("PanelContainer/VBoxContainer/SurfacePlacementModeContainer/HBoxContainer/AlignToSurfaceNormalCheckbox")
+planePlacementModeContainer = NodePath("PanelContainer/VBoxContainer/PlanePlacementModeContainer")
+surfacePlacementModeContainer = NodePath("PanelContainer/VBoxContainer/SurfacePlacementModeContainer")
+alignmentDirectionOptionButton = NodePath("PanelContainer/VBoxContainer/SurfacePlacementModeContainer/VBoxContainer/OptionButton")
+terrain3DSelectorButton = NodePath("../Terrain3DSelectorUi")
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer"]
+layout_mode = 2
+
+[node name="PlanePlacementModeContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Plane"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "YZ (A)
+XZ (S)
+XY (D)"
+theme_type_variation = &"InspectorActionButton"
+item_count = 3
+selected = 1
+popup/item_0/text = "YZ"
+popup/item_0/id = 0
+popup/item_1/text = "XZ"
+popup/item_1/id = 1
+popup/item_2/text = "XY"
+popup/item_2/id = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+tooltip_text = "Offset the plane (G)"
+mouse_filter = 1
+text = "Position"
+
+[node name="Reset" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Reset"
+flat = true
+
+[node name="SelectedNode" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Selected Node"
+flat = true
+
+[node name="PlanePosLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/PlanePlacementModeContainer/VBoxContainer2"]
+layout_mode = 2
+tooltip_text = "Offset the plane (G)"
+theme_type_variation = &"InspectorActionButton"
+text = "0"
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="SurfacePlacementModeContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/SurfacePlacementModeContainer"]
+layout_mode = 2
+
+[node name="AlignToSurfaceNormalCheckbox" type="CheckBox" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/SurfacePlacementModeContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/SurfacePlacementModeContainer/HBoxContainer"]
+layout_mode = 2
+text = "Align to Surface Normal"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/SurfacePlacementModeContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/SurfacePlacementModeContainer/VBoxContainer"]
+layout_mode = 2
+text = "Alignment Direction"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/ScrollContainer/VBoxContainer/PlacementModeUi/PanelContainer/VBoxContainer/SurfacePlacementModeContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "Specify which direction of the asset should be aligned to the surface normal. "
+theme_type_variation = &"InspectorActionButton"
+item_count = 6
+selected = 2
+popup/item_0/text = "+X (Right)"
+popup/item_0/id = 0
+popup/item_1/text = "-X (Left)"
+popup/item_1/id = 3
+popup/item_2/text = "+Y (Up)"
+popup/item_2/id = 1
+popup/item_3/text = "-Y (Down)"
+popup/item_3/id = 4
+popup/item_4/text = "+Z (Back)"
+popup/item_4/id = 2
+popup/item_5/text = "-Z (Forward)"
+popup/item_5/id = 5
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tm7nb")
+
+[node name="SnappingLabel" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"HeaderMedium"
+text = "Snapping"
+
+[node name="SnappingContainer" type="PanelContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_f6yvs")
+script = ExtResource("7_15sxk")
+translateSnapCheckbox = NodePath("PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer/HBoxContainer/TranslateSnapCheckbox")
+translateSnapStepEdit = NodePath("PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer/TranslateSnapLineEdit")
+translateShiftSnapStepEdit = NodePath("PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer2/TranslateShiftSnapLineEdit")
+translateSnapOffsetEditX = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/SnapOffset1")
+translateSnapOffsetEditY = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer/SnapOffset2")
+offsetFromSelectedButton = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer2/SelectedNode")
+resetOffsetButton = NodePath("PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Reset")
+
+[node name="Panel" type="Panel" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "All"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="TranslateSnapContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TranslateSnapCheckbox" type="CheckBox" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Enabled"
+
+[node name="TranslateSnapLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"InspectorActionButton"
+text = "1"
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.647059, 0.647059, 0.647059, 1)
+text = "+SHIFT"
+
+[node name="TranslateShiftSnapLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/TranslateSnapContainer/VBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"InspectorActionButton"
+text = "0.1"
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Offset"
+
+[node name="Reset" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Reset"
+flat = true
+
+[node name="SelectedNode" type="Button" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Selected Node"
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="SnapOffsetLabel1" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "x:"
+
+[node name="SnapOffset1" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_type_variation = &"InspectorActionButton"
+theme_override_constants/minimum_character_width = 3
+text = "0"
+expand_to_text_length = true
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="SnapOffsetLabel2" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "z:"
+
+[node name="SnapOffset2" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"InspectorActionButton"
+theme_override_constants/minimum_character_width = 3
+text = "0.0"
+expand_to_text_length = true
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="ScaleSnapContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Scale"
+
+[node name="ScaleSnapLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_type_variation = &"InspectorActionButton"
+text = "1"
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.647059, 0.647059, 0.647059, 1)
+text = "+SHIFT"
+
+[node name="ScaleShiftSnapLineEdit" type="LineEdit" parent="HBoxContainer/ScrollContainer/VBoxContainer/SnappingContainer/PanelContainer/VBoxContainer/ScaleSnapContainer/VBoxContainer2"]
+layout_mode = 2
+theme_type_variation = &"InspectorActionButton"
+theme_override_colors/font_uneditable_color = Color(0.576471, 0.576471, 0.576471, 1)
+text = "0.1"
+select_all_on_focus = true
+script = ExtResource("12_y6nck")
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sdpag")
+
+[node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Assets"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LibraryTabBar" type="TabBar" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+tab_count = 3
+max_tab_width = 180
+drag_to_rearrange_enabled = true
+tab_0/title = "MyLibrary1"
+tab_1/title = "MyLibrary2"
+tab_2/title = "MyLibrary3"
+
+[node name="AddLibraryButton" type="Button" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "New Library"
+
+[node name="Panel" type="PanelContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"ControlEditorPopupPanel"
+script = ExtResource("6_43del")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="FilterLineEdit" type="LineEdit" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Filter Assets"
+script = ExtResource("12_y6nck")
+
+[node name="PlaceHolder" type="Control" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MatchSelectedButton" type="Button" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "Matches the selected Node from the scene to an asset, either by selecting the asset if it is part of the current library, or adding it as a new asset."
+text = "Match Selected"
+
+[node name="Control" type="Control" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="Label3" type="Label" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control"]
+modulate = Color(0.564706, 0.564706, 0.564706, 0.478431)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -16.0
+offset_right = 315.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Drag&Drop assets in the container to add"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control/PanelContainer"]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/Panel/VBoxContainer/Control/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_f7uvq")
+
+[node name="SaveLoadButtons" type="HBoxContainer" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SaveButton" type="Button" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Save Library"
+
+[node name="LoadButton" type="Button" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Load Library"
+
+[node name="HSeparator" type="VSeparator" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kt431")
+
+[node name="AssetButtonSizeSlider" type="HSlider" parent="HBoxContainer/PanelContainer/PanelContainer/VBoxContainer/SaveLoadButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = 0.3
+max_value = 1.0
+step = 0.02
+value = 0.6
+
+[editable path="HBoxContainer/ScrollContainer/VBoxContainer/SpawnParentSelectorUi"]
+[editable path="HBoxContainer/ScrollContainer/VBoxContainer/Terrain3DSelectorUi"]

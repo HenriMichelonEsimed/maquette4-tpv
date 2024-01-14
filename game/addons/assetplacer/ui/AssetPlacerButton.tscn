@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4i54pft0an"]
+
+[ext_resource type="Theme" uid="uid://cdejano5l8vrj" path="res://addons/assetplacer/ui/NormalButton.tres" id="1_h2oc1"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/AssetPlacerButton.cs" id="2_gs4jv"]
+[ext_resource type="Texture2D" uid="uid://g0og5n4vtaib" path="res://addons/assetplacer/ui/icons/icon.svg" id="3_l6epr"]
+[ext_resource type="Texture2D" uid="uid://dhiehpsdn51vb" path="res://addons/assetplacer/ui/icons/ResetTransformIcon.svg" id="4_wef3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvm3u"]
+
+[node name="AssetPlacerButton" type="Button"]
+custom_minimum_size = Vector2(180, 196)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -115.0
+offset_right = -1102.0
+offset_bottom = -567.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h2oc1")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("2_gs4jv")
+iconTextureRect = NodePath("VBoxContainer2/MarginContainer/HBoxContainer/MarginContainer/IconTexture")
+resetTransformButton = NodePath("VBoxContainer2/MarginContainer/HBoxContainer/AspectRatioContainer/TransformResetButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="HSep" type="HSeparator" parent="VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 4
+theme_override_styles/separator = SubResource("StyleBoxEmpty_kvm3u")
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("3_l6epr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 13
+text = "Asset name"
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="IconTexture" type="TextureRect" parent="VBoxContainer2/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_l6epr")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="VBoxContainer2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment_horizontal = 2
+alignment_vertical = 0
+
+[node name="TransformResetButton" type="Button" parent="VBoxContainer2/MarginContainer/HBoxContainer/AspectRatioContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Reset Transformation"
+icon = ExtResource("4_wef3h")
+expand_icon = true
+
+[node name="Control" type="Control" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.5
+mouse_filter = 2

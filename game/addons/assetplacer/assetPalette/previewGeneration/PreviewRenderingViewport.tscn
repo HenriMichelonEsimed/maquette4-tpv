@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://533jvc7wl1iu"]
+
+[ext_resource type="Script" path="res://addons/assetplacer/assetPalette/previewGeneration/PreviewRenderingViewport.cs" id="1_4yejy"]
+[ext_resource type="Environment" uid="uid://cek87x2wjei0u" path="res://addons/assetplacer/assetPalette/previewGeneration/PreviewEnvironment.tres" id="2_th1ge"]
+[ext_resource type="Script" path="res://addons/assetplacer/assetPalette/previewGeneration/PreviewCamera3D.cs" id="3_3j42m"]
+
+[sub_resource type="World3D" id="World3D_4j6is"]
+environment = ExtResource("2_th1ge")
+
+[node name="PreviewRenderingViewport" type="SubViewport"]
+own_world_3d = true
+world_3d = SubResource("World3D_4j6is")
+transparent_bg = true
+script = ExtResource("1_4yejy")
+_environment = ExtResource("2_th1ge")
+_cameraPath = NodePath("Camera3D")
+_lightPath = NodePath("DirectionalLight3D")
+_lightPath2 = NodePath("DirectionalLight3D2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707106, -0.612373, 0.353554, 0, 0.5, 0.866026, -0.707106, -0.612373, 0.353554, 0, 0, 0)
+light_energy = 0.6
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707106, -0.612373, 0.353554, 0, 0.5, 0.866026, -0.707106, -0.612373, 0.353554, 0, 0, 0)
+light_energy = 0.4
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.988079, 0, -0.153948, 0, 1, 0, 0.153948, 0, 0.988079, 0, 0, 0)
+script = ExtResource("3_3j42m")

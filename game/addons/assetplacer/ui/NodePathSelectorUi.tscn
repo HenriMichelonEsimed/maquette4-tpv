@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://dod1gdi7s27cy"]
+
+[ext_resource type="Script" path="res://addons/assetplacer/ui/NodePathSelectorUi.cs" id="1_7yhf7"]
+[ext_resource type="Script" path="res://addons/assetplacer/ui/NodePathSelectionButton.cs" id="2_owr3c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7pr5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.147, 0.168, 0.203, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7dlr"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.128625, 0.147, 0.177625, 1)
+
+[node name="NodePathSelectorUi" type="HBoxContainer"]
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+script = ExtResource("1_7yhf7")
+selectNodeButton = NodePath("selectNodeButton")
+setSelectedButton = NodePath("setSelectededButton")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Node path: "
+
+[node name="selectNodeButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7pr5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w7pr5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o7dlr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_w7pr5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_w7pr5")
+text = "<Node>"
+clip_text = true
+script = ExtResource("2_owr3c")
+
+[node name="setSelectededButton" type="Button" parent="."]
+layout_mode = 2
+tooltip_text = "Set the currently selected node"
+theme_override_colors/icon_normal_color = Color(0.87451, 0.87451, 0.87451, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(0.462745, 0.482353, 0.509804, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7pr5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w7pr5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o7dlr")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_w7pr5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_w7pr5")
+text = "Selected Node"
