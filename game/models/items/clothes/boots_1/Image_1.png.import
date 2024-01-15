@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://busf1omhacs4a"
 path.s3tc="res://.godot/imported/Image_1.png-e17eb969c82fe05ca4f2cbf4fc4c6e2c.s3tc.ctex"
+path.etc2="res://.godot/imported/Image_1.png-e17eb969c82fe05ca4f2cbf4fc4c6e2c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://models/items/clothes/boots_1/Image_1.png"
-dest_files=["res://.godot/imported/Image_1.png-e17eb969c82fe05ca4f2cbf4fc4c6e2c.s3tc.ctex"]
+dest_files=["res://.godot/imported/Image_1.png-e17eb969c82fe05ca4f2cbf4fc4c6e2c.s3tc.ctex", "res://.godot/imported/Image_1.png-e17eb969c82fe05ca4f2cbf4fc4c6e2c.etc2.ctex"]
 
 [params]
 

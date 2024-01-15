@@ -121,3 +121,8 @@ run={
 3d_physics/layer_7="moveable_prop"
 3d_physics/layer_8="water"
 3d_physics/layer_9="enemy"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

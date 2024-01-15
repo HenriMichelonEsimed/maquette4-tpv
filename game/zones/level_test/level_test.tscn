@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmdsagp5bp3w"]
+
+[ext_resource type="Terrain3DStorage" uid="uid://cs000tvxhjfk5" path="res://zones/level_test/level_test_terrain.res" id="1_3bt4n"]
+[ext_resource type="Script" path="res://lib/nodes/zone.gd" id="1_6w847"]
+[ext_resource type="Terrain3DMaterial" uid="uid://doqj5cmdaydx4" path="res://assets/materials/terrain/exterior_1.res" id="2_71b4m"]
+[ext_resource type="Terrain3DTextureList" uid="uid://5twjwa16heux" path="res://assets/textures/terrain/exterior_1.res" id="3_h057j"]
+[ext_resource type="Script" path="res://lib/nodes/spawn_point.gd" id="4_sk6ra"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tcytu"]
+sky_top_color = Color(0.392157, 0.627451, 0.94902, 1)
+sky_horizon_color = Color(0.648039, 0.699113, 0.770505, 1)
+ground_horizon_color = Color(0.648039, 0.699113, 0.770505, 1)
+
+[sub_resource type="Sky" id="Sky_gosna"]
+sky_material = SubResource("ProceduralSkyMaterial_tcytu")
+
+[sub_resource type="Environment" id="Environment_fdrda"]
+background_mode = 2
+sky = SubResource("Sky_gosna")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="LevelTest" type="Node3D"]
+script = ExtResource("1_6w847")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.373319, 0.332615, 0, 0.66523, 0.746638, -0.5, 0.646608, -0.576106, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fdrda")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("1_3bt4n")
+material = ExtResource("2_71b4m")
+texture_list = ExtResource("3_h057j")
+
+[node name="SpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 1, 48)
+script = ExtResource("4_sk6ra")

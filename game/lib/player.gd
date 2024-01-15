@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody3D
 
-@onready var camera:Camera3D = $CameraTPV1
+@onready var camera:Camera3D = $Camera
 @onready var character:Node3D = $Character
 
 var anim:AnimationPlayer

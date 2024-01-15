@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
-[ext_resource type="PackedScene" uid="uid://dk7inxj4a60bw" path="res://scenes/characters/player.tscn" id="2_lmkk7"]
+[ext_resource type="PackedScene" uid="uid://mglr65d8egx6" path="res://scenes/characters/player.scn" id="2_r36xu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2wdg6"]
 radius = 0.41548
@@ -11,12 +11,12 @@ height = 1.78337
 collision_layer = 3
 script = ExtResource("1_uojmw")
 
-[node name="Character" parent="." instance=ExtResource("2_lmkk7")]
-
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886468, 0)
 shape = SubResource("CapsuleShape3D_2wdg6")
 
-[node name="CameraTPV1" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60484, 2.15928)
-fov = 60.0
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00950241, 1.56014, -0.198796)
+fov = 70.0
+
+[node name="Character" parent="." instance=ExtResource("2_r36xu")]

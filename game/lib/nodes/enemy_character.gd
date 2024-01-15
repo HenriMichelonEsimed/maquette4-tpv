@@ -173,7 +173,7 @@ var slide_angle:float
 func _ready():
 	weapon.disable()
 	weapon.use_area.set_collision_mask_value(Consts.LAYER_PLAYER, true)
-	weapon.use_area.set_collision_mask_value(Consts.LAYER_ENEMY_CHARACTER, false)
+	weapon.use_area.set_collision_mask_value(Consts.LAYER_ENEMY, false)
 	connect("input_event", _on_input_event)
 	hit_points = hit_points_roll.roll()
 	walking_speed = walking_speed_roll.roll()
@@ -181,14 +181,12 @@ func _ready():
 	detection_distance = detection_distance_roll.roll()
 	help_distance = help_distance_roll.roll()
 	xp = hit_points
-	set_collision_mask_value(Consts.LAYER_ROOFS, true)
-	set_collision_layer_value(Consts.LAYER_ENEMY_CHARACTER, true)
+	set_collision_layer_value(Consts.LAYER_ENEMY, true)
 	attack_animation_scale = GameMechanics.anim_scale(weapon.speed)
 	if (height == 0) and (collision_shape.shape is CylinderShape3D):
 		height = collision_shape.shape.height
 	raycast_detection.position.y = height
 	raycast_detection.target_position = Vector3(0.0, 0.0, -detection_distance)
-	raycast_detection.set_collision_mask_value(Consts.LAYER_ROOFS, true)
 	add_child(raycast_detection)
 	label_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label_info.visible = false
@@ -512,7 +510,7 @@ func _update_label_info_position():
 		label_info.position = pos2d
 		label_info.position.x -= label_info.size.x / 2
 		label_info.position.y -= label_info.size.y + progress_hp.size.y
-		label_info.add_theme_font_size_override("font_size", 14 - GameState.camera.size / 10)
+		label_info.add_theme_font_size_override("font_size", 14 - GameState.camera.size / 10.0)
 		icon_info.position.x = label_info.position.x + label_info.size.x + 1
 		icon_info.position.y = label_info.position.y
 

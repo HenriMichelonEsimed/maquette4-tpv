@@ -30,7 +30,7 @@ func change_zone(main:Node, zone_name:String, spawnpoint_key:String="default"):
 	GameState.current_zone = new_zone
 	GameState.player_state.zone_name = zone_name
 	GameState.current_zone.connect("change_zone", change_zone)
-	GameState.player.interactions.connect("item_collected", GameState.current_zone.on_item_collected)
+#	GameState.player.interactions.connect("item_collected", GameState.current_zone.on_item_collected)
 	main.add_child(GameState.current_zone)
 	_spawn_player(spawnpoint_key)
 	_spawn_enemies()

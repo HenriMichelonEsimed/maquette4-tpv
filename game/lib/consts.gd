@@ -18,7 +18,6 @@ const AUDIO_BUS_EFFECTS = "Effects"
 const COLOR_POSITIVE = Color.DARK_GREEN
 const COLOR_NEGATIVE = Color.DARK_RED
 
-const ANIM_IDLE = "idle"
-const ANIM_WALKING = "walk"
-const ANIM_RUNNING = "run"
-const ANIM_JUMPING = "jump"
+const ANIM_IDLE = "player/idle"
+const ANIM_WALKING = "player/walk"
+const ANIM_RUNNING = "player/run"
