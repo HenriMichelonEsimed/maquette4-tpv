@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://clr5j1ag0cu53"]
+[gd_scene load_steps=6 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
 [ext_resource type="PackedScene" uid="uid://mglr65d8egx6" path="res://scenes/characters/player.scn" id="2_r36xu"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="3_ye148"]
+[ext_resource type="Script" path="res://lib/player_interactions.gd" id="4_rvpbv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2wdg6"]
 radius = 0.41548
@@ -15,10 +16,6 @@ script = ExtResource("1_uojmw")
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886468, 0)
 shape = SubResource("CapsuleShape3D_2wdg6")
-
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00950241, 1.56014, -0.198796)
-fov = 70.0
 
 [node name="Character" parent="." instance=ExtResource("2_r36xu")]
 
@@ -36,3 +33,22 @@ action_left = "move_left"
 action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_backwards"
+
+[node name="TimerUse" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.985809, 0.16787, 0, -0.16787, 0.985809, 0.499269, 1.74461, 0.823024)
+near = 0.1
+far = 300.0
+
+[node name="RayCastInteractions" type="RayCast3D" parent="." node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0119203, 1.60871, -0.179028)
+target_position = Vector3(0, 0, -1)
+collision_mask = 12
+script = ExtResource("4_rvpbv")
+camera = NodePath("../Camera")
+
+[connection signal="timeout" from="TimerUse" to="." method="_on_timer_use_timeout"]

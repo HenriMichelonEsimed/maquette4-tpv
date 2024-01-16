@@ -1,5 +1,6 @@
 class_name ItemWeapon extends ItemUnique
 
+@export var anim:String = "sword"
 var damages_roll:DicesRoll
 var speed_roll:DicesRoll
 

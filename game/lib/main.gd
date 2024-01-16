@@ -13,6 +13,12 @@ func _ready():
 	GameState.ui = $MainUI
 	TranslationServer.set_locale(GameState.settings.lang)
 	NotificationManager.connect("xp_gain", xp_gain)
+	if (GameState.current_item != null):
+		var item = GameState.current_item
+		GameState.current_item = null
+		CurrentItemManager.use(item)
+	else:
+		CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "short_sword_1"))
 	GameState.quests.start("main")
 	zones.change_zone(self, GameState.player_state.zone_name)
 	if (GameState.player_state.position != Vector3.ZERO):
