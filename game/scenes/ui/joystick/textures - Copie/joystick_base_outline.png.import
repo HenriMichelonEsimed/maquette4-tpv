@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dki430d7jvp6"
-path="res://.godot/imported/square_button.png-3b9116287db6a487702944b003037ffb.ctex"
+uid="uid://bm30au8mjfc2f"
+path="res://.godot/imported/joystick_base_outline.png-90857cb8fe14cd0fca3bf9f3131da569.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/controllers/touch/square_button.png"
-dest_files=["res://.godot/imported/square_button.png-3b9116287db6a487702944b003037ffb.ctex"]
+source_file="res://scenes/ui/joystick/textures - Copie/joystick_base_outline.png"
+dest_files=["res://.godot/imported/joystick_base_outline.png-90857cb8fe14cd0fca3bf9f3131da569.ctex"]
 
 [params]
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://q6e6t2nkqepw"]
+[gd_scene load_steps=3 format=3 uid="uid://q6e6t2nkqepw"]
 
 [ext_resource type="Script" path="res://lib/ui/main_ui.gd" id="1_ieyqe"]
+[ext_resource type="Texture2D" uid="uid://cglhbmbupa2is" path="res://assets/icons/menu.svg" id="2_ly8x0"]
 
 [node name="MainUI" type="Control"]
+modulate = Color(1, 1, 1, 0.501961)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,5 +23,17 @@ offset_bottom = 20.0
 grow_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 28
 text = "FPS"
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 25.0
+offset_bottom = 25.0
+
+[node name="Quit" type="TouchScreenButton" parent="Menu"]
+position = Vector2(4, 5)
+scale = Vector2(0.05, 0.048)
+texture_normal = ExtResource("2_ly8x0")
+
+[connection signal="pressed" from="Menu/Quit" to="." method="_on_quit_pressed"]

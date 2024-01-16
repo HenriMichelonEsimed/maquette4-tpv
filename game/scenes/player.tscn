@@ -36,20 +36,3 @@ action_left = "move_left"
 action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_backwards"
-
-[node name="Right" parent="Joysticks" instance=ExtResource("3_ye148")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -149.0
-offset_top = -156.0
-offset_right = 151.0
-offset_bottom = 144.0
-grow_horizontal = 0
-scale = Vector2(0.5, 0.5)
-pressed_color = Color(0.462745, 0.788235, 0.972549, 1)
-use_input_actions = false
-action_left = "look_left"
-action_right = "look_right"
-action_up = "look_up"
-action_down = "look_down"

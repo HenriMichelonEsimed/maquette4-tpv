@@ -62,11 +62,9 @@ var _touch_index : int = -1
 
 # FUNCTIONS
 
-func _ready() -> void:
-	if not(OS.get_name().to_lower() in ["android", "ios"]):
-		queue_free()
-#	if not DisplayServer.is_touchscreen_available() and visibility_mode == Visibility_mode.TOUCHSCREEN_ONLY:
-#		hide()
+#func _ready() -> void:
+#	if not(Tools.is_mobile()):
+#		queue_free()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:

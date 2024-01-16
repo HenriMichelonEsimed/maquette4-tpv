@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daqkryx1joumi"
-path="res://.godot/imported/d_pad_1.png-96b27c6ec10d39c7f256ea94f6e2754a.ctex"
+uid="uid://bjj5wk2wi6t14"
+path="res://.godot/imported/blank_button_pressed.png-eeb18ab5589cca87a5c290d83ab9840d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/controllers/touch/d_pad_1.png"
-dest_files=["res://.godot/imported/d_pad_1.png-96b27c6ec10d39c7f256ea94f6e2754a.ctex"]
+source_file="res://assets/controllers/touch/blank_button_pressed.png"
+dest_files=["res://.godot/imported/blank_button_pressed.png-eeb18ab5589cca87a5c290d83ab9840d.ctex"]
 
 [params]
 

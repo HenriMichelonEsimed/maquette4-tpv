@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://smee5duiv5x1"
-path="res://.godot/imported/circle_button.png-a42b452bccf318c45e714354f7850156.ctex"
+uid="uid://dt13r06u87fib"
+path="res://.godot/imported/joystick_tip_arrows.png-1efbbed522eaa5b916839120e0e99ad2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/controllers/touch/circle_button.png"
-dest_files=["res://.godot/imported/circle_button.png-a42b452bccf318c45e714354f7850156.ctex"]
+source_file="res://scenes/ui/joystick/textures - Copie/joystick_tip_arrows.png"
+dest_files=["res://.godot/imported/joystick_tip_arrows.png-1efbbed522eaa5b916839120e0e99ad2.ctex"]
 
 [params]
 

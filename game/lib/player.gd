@@ -5,16 +5,18 @@ class_name Player extends CharacterBody3D
 @onready var joystick_left:VirtualJoystick = $Joysticks/Left
 @onready var joystick_right:VirtualJoystick = $Joysticks/Right
 
+const walking_speed:float = 5
+const running_speed:float = 8
+const jump_speed:float = 5
+const mouse_sensitivity:float = 0.005
+const joystick_sensitivity:float = 0.05
+const max_camera_angle_up:float = deg_to_rad(60)
+const max_camera_angle_down:float = -deg_to_rad(75)
+
 var anim:AnimationPlayer
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var walking_speed:float = 5
-var running_speed:float = 8
-var jump_speed:float = 5
-var mouse_sensitivity:float = 0.002
-var joystick_sensitivity:float = 0.05
+var look_sensitivity:float
 var mouse_captured:bool = false
-var max_camera_angle_up:float = deg_to_rad(60)
-var max_camera_angle_down:float = -deg_to_rad(75)
 var look_up_action:String = "look_up"
 var look_down_action:String = "look_down"
 var mouse_y_axis:int = -1
@@ -23,20 +25,26 @@ var hand_attachement:Node3D
 var touch_controls:bool = false
 
 func _ready():
-	touch_controls = OS.get_name().to_lower() in ["android", "ios"]
+	touch_controls = Tools.is_mobile()
 	anim = character.get_node("AnimationPlayer")
 	hand_attachement = character.get_node("Armature/Skeleton3D/HandAttachment/AttachmentPoint")
 	if (GameState.player_state.position != Vector3.ZERO):
 		set_pos()
 	set_y_axis()
-	if not touch_controls: capture_mouse()
+	if touch_controls: 
+		look_sensitivity = joystick_sensitivity
+	else:
+		look_sensitivity = mouse_sensitivity
+		capture_mouse()
 	anim.play(Consts.ANIM_IDLE)
 
 func _input(event):
-	if event is InputEventMouseMotion and mouse_captured:
-		rotate_y(-event.relative.x * mouse_sensitivity)
-		camera.rotate_x(event.relative.y * mouse_sensitivity * mouse_y_axis)
+	if (event is InputEventScreenDrag) or (mouse_captured and (event is InputEventMouseMotion)):
+		rotate_y(-event.relative.x * look_sensitivity)
+		camera.rotate_x(event.relative.y * look_sensitivity * mouse_y_axis)
 		camera.rotation.x = clampf(camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
+	if mouse_captured and Input.is_action_just_pressed("cancel"):
+		release_mouse()
 
 func _physics_process(delta):
 	if (mouse_captured):
@@ -46,10 +54,6 @@ func _physics_process(delta):
 			rotate_y(-look_dir.x * 2.0)
 			camera.rotate_x(-look_dir.y)
 			camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
-	elif touch_controls:
-		rotate_y(-joystick_right.output.x * joystick_sensitivity)
-		camera.rotate_x(joystick_right.output.y * joystick_sensitivity * mouse_y_axis)
-		camera.rotation.x = clampf(camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
 	var on_floor = is_on_floor_only() 
 	if not on_floor:
 		velocity.y += -gravity * delta
@@ -66,6 +70,8 @@ func _physics_process(delta):
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 	if  direction != Vector3.ZERO:
+		if not touch_controls and not mouse_captured:
+			capture_mouse()
 		if run:
 			if (anim.current_animation != Consts.ANIM_RUNNING):
 				anim.play(Consts.ANIM_RUNNING)
