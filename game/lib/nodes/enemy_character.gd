@@ -510,7 +510,7 @@ func _update_label_info_position():
 		label_info.position = pos2d
 		label_info.position.x -= label_info.size.x / 2
 		label_info.position.y -= label_info.size.y + progress_hp.size.y
-		label_info.add_theme_font_size_override("font_size", 14 - GameState.camera.size / 10.0)
+		label_info.add_theme_font_size_override("font_size", 14.0 - GameState.camera.size / 10.0)
 		icon_info.position.x = label_info.position.x + label_info.size.x + 1
 		icon_info.position.y = label_info.position.y
 

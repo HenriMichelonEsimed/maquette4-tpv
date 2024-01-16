@@ -24,7 +24,7 @@ func _ready():
 	if (GameState.player_state.position != Vector3.ZERO):
 		set_pos()
 	set_y_axis()
-	capture_mouse()
+	#capture_mouse()
 	anim.play(Consts.ANIM_IDLE)
 
 func _unhandled_input(event):
@@ -35,13 +35,21 @@ func _unhandled_input(event):
 		camera.rotation.x = clampf(camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
 
 func _process(delta):
-	if mouse_captured:
+	if (mouse_captured):
 		var joypad_dir: Vector2 = Input.get_vector("look_left", "look_right", look_up_action, look_down_action)
 		if joypad_dir.length() > 0:
 			var look_dir = joypad_dir * delta
 			rotate_y(-look_dir.x * 2.0)
 			camera.rotate_x(-look_dir.y)
 			camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
+	else:
+		var look_dir = Vector2.ZERO
+		look_dir.x = Input.get_axis("look_left", "look_right")
+		look_dir.y = Input.get_axis("look_up", "look_down")
+		rotate_y(-look_dir.x / 0.1)
+		camera.rotate_x(-look_dir.y)
+		camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
+
 	var on_floor = is_on_floor_only() 
 	if not on_floor:
 		velocity.y += -gravity * delta

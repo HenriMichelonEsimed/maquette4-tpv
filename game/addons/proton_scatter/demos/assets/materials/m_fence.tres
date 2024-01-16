@@ -1,6 +1,7 @@
-[gd_resource type="SpatialMaterial" format=2]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bvj4fj75h2648"]
 
 [resource]
 resource_name = "wood"
 vertex_color_use_as_albedo = true
-albedo_color = Color( 0.568627, 0.466667, 0.372549, 1 )
+albedo_color = Color(0.360784, 0.286275, 0.219608, 1)
+albedo_texture_force_srgb = true

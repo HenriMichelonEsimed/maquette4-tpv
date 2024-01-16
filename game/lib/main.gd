@@ -4,7 +4,7 @@ var zones:ZonesManager = ZonesManager.new()
 
 func _ready():
 	GameState.player = $Player
-	#GameState.ui = $MainUI
+	GameState.ui = $MainUI
 	TranslationServer.set_locale(GameState.settings.lang)
 	NotificationManager.connect("xp_gain", xp_gain)
 	GameState.quests.start("main")

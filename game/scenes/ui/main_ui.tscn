@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://q6e6t2nkqepw"]
+[gd_scene load_steps=3 format=3 uid="uid://q6e6t2nkqepw"]
 
 [ext_resource type="Script" path="res://lib/ui/main_ui.gd" id="1_ieyqe"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="2_b48xb"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -10,3 +11,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ieyqe")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Virtual Joystick" parent="CanvasLayer" instance=ExtResource("2_b48xb")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = -300.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+action_left = "look_left"
+action_right = "look_right"
+action_up = "look_up"
+action_down = "look_down"

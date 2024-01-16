@@ -8,7 +8,6 @@ func _ready():
 	set_collision_layer_value(Consts.LAYER_MOVEABLE_PROP, true)
 	set_collision_mask_value(Consts.LAYER_WORLD, true)
 	set_collision_mask_value(Consts.LAYER_USABLE, true)
-	set_collision_mask_value(Consts.LAYER_ROOFS, true)
 	set_collision_mask_value(Consts.LAYER_MOVEABLE_PROP, true)
 	set_collision_mask_value(Consts.LAYER_PLAYER, true)
 	if (sound != null):
