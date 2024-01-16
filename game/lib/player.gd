@@ -2,6 +2,8 @@ class_name Player extends CharacterBody3D
 
 @onready var camera:Camera3D = $Camera
 @onready var character:Node3D = $Character
+@onready var joystick_left:VirtualJoystick = $Joysticks/Left
+@onready var joystick_right:VirtualJoystick = $Joysticks/Right
 
 var anim:AnimationPlayer
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -9,6 +11,7 @@ var walking_speed:float = 5
 var running_speed:float = 8
 var jump_speed:float = 5
 var mouse_sensitivity:float = 0.002
+var joystick_sensitivity:float = 0.05
 var mouse_captured:bool = false
 var max_camera_angle_up:float = deg_to_rad(60)
 var max_camera_angle_down:float = -deg_to_rad(75)
@@ -17,24 +20,25 @@ var look_down_action:String = "look_down"
 var mouse_y_axis:int = -1
 var previous_position:Vector3
 var hand_attachement:Node3D
+var touch_controls:bool = false
 
 func _ready():
+	touch_controls = OS.get_name().to_lower() in ["android", "ios"]
 	anim = character.get_node("AnimationPlayer")
 	hand_attachement = character.get_node("Armature/Skeleton3D/HandAttachment/AttachmentPoint")
 	if (GameState.player_state.position != Vector3.ZERO):
 		set_pos()
 	set_y_axis()
-	#capture_mouse()
+	if not touch_controls: capture_mouse()
 	anim.play(Consts.ANIM_IDLE)
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion and mouse_captured:
-		rotate_y(-event.relative.x * mouse_sensitivity)
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		camera.rotate_x(event.relative.y * mouse_sensitivity * mouse_y_axis)
 		camera.rotation.x = clampf(camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
 
-func _process(delta):
+func _physics_process(delta):
 	if (mouse_captured):
 		var joypad_dir: Vector2 = Input.get_vector("look_left", "look_right", look_up_action, look_down_action)
 		if joypad_dir.length() > 0:
@@ -42,24 +46,26 @@ func _process(delta):
 			rotate_y(-look_dir.x * 2.0)
 			camera.rotate_x(-look_dir.y)
 			camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
-	else:
-		var look_dir = Vector2.ZERO
-		look_dir.x = Input.get_axis("look_left", "look_right")
-		look_dir.y = Input.get_axis("look_up", "look_down")
-		rotate_y(-look_dir.x / 0.1)
-		camera.rotate_x(-look_dir.y)
-		camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
-
+	elif touch_controls:
+		rotate_y(-joystick_right.output.x * joystick_sensitivity)
+		camera.rotate_x(joystick_right.output.y * joystick_sensitivity * mouse_y_axis)
+		camera.rotation.x = clampf(camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
 	var on_floor = is_on_floor_only() 
 	if not on_floor:
 		velocity.y += -gravity * delta
-	var input = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
-	var direction = transform.basis * Vector3(input.x, 0, input.y)
 	var run = Input.is_action_pressed("run")
 	var speed = running_speed if run else walking_speed
+	var direction = Vector3.ZERO
+	if (touch_controls):
+		direction = transform.basis * Vector3(joystick_left.output.x, 0, joystick_left.output.y)
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		var input = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+		direction = transform.basis * Vector3(input.x, 0, input.y)
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
-	if direction != Vector3.ZERO:
+	if  direction != Vector3.ZERO:
 		if run:
 			if (anim.current_animation != Consts.ANIM_RUNNING):
 				anim.play(Consts.ANIM_RUNNING)

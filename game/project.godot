@@ -24,9 +24,10 @@ GameState="*res://lib/states/game_state.gd"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
@@ -127,5 +128,6 @@ pointing/emulate_mouse_from_touch=false
 
 [rendering]
 
+gl_compatibility/driver.windows="opengl3_angle"
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true

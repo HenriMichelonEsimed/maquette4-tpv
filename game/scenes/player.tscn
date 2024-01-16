@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://clr5j1ag0cu53"]
+[gd_scene load_steps=5 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
 [ext_resource type="PackedScene" uid="uid://mglr65d8egx6" path="res://scenes/characters/player.scn" id="2_r36xu"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="3_ye148"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2wdg6"]
 radius = 0.41548
@@ -20,3 +21,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00950241, 1.56014, -0.1987
 fov = 70.0
 
 [node name="Character" parent="." instance=ExtResource("2_r36xu")]
+
+[node name="Joysticks" type="CanvasLayer" parent="."]
+
+[node name="Left" parent="Joysticks" instance=ExtResource("3_ye148")]
+offset_left = 1.0
+offset_top = -151.0
+offset_right = 301.0
+offset_bottom = 149.0
+scale = Vector2(0.5, 0.5)
+pressed_color = Color(0.462745, 0.788235, 0.972549, 1)
+use_input_actions = false
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_backwards"
+
+[node name="Right" parent="Joysticks" instance=ExtResource("3_ye148")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -149.0
+offset_top = -156.0
+offset_right = 151.0
+offset_bottom = 144.0
+grow_horizontal = 0
+scale = Vector2(0.5, 0.5)
+pressed_color = Color(0.462745, 0.788235, 0.972549, 1)
+use_input_actions = false
+action_left = "look_left"
+action_right = "look_right"
+action_up = "look_up"
+action_down = "look_down"
