@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://clr5j1ag0cu53"]
+[gd_scene load_steps=11 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="3_ye148"]
@@ -9,17 +9,19 @@
 [ext_resource type="Texture2D" uid="uid://dxwhf32lehedn" path="res://assets/controllers/touch/b_button_pressed.png" id="6_lcm53"]
 [ext_resource type="PackedScene" uid="uid://bb8aqea87uhhw" path="res://scenes/characters/player_2.tscn" id="6_yj2x5"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2wdg6"]
-radius = 0.41548
-height = 1.78337
+[sub_resource type="BoxShape3D" id="BoxShape3D_7gbjc"]
+size = Vector3(0.67041, 1.60535, 0.724213)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jfds7"]
+size = Vector3(0.260529, 0.155396, 0.268799)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
 script = ExtResource("1_uojmw")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.886468, 0)
-shape = SubResource("CapsuleShape3D_2wdg6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020752, 0.802911, -0.0719757)
+shape = SubResource("BoxShape3D_7gbjc")
 
 [node name="Joysticks" type="CanvasLayer" parent="."]
 
@@ -82,6 +84,10 @@ camera = NodePath("../Camera")
 player = NodePath("..")
 
 [node name="Character" parent="." instance=ExtResource("6_yj2x5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.504929, 1.75106, 0.793368)
+shape = SubResource("BoxShape3D_jfds7")
 
 [connection signal="pressed" from="Joysticks/Control/Use" to="." method="_on_use_pressed"]
 [connection signal="pressed" from="Joysticks/Control/Run" to="." method="_on_run_pressed"]

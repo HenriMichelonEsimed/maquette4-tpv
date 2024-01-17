@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://j2np82emqfk8"]
+[gd_scene load_steps=2 format=3 uid="uid://j2np82emqfk8"]
 
-[ext_resource type="Texture2D" uid="uid://cwm0tfw6mpaf3" path="res://assets/controllers/touch/analog_stick_bg_1.png" id="1_c7whb"]
 [ext_resource type="Script" path="res://lib/ui/touch_ui.gd" id="1_vqkvn"]
-[ext_resource type="Texture2D" uid="uid://4o8o6rhr0dsk" path="res://assets/controllers/touch/analog_stick.png" id="2_r164a"]
 
 [node name="TouchUi" type="CanvasLayer"]
 script = ExtResource("1_vqkvn")
@@ -22,11 +20,11 @@ grow_vertical = 0
 [node name="Analog" type="TouchScreenButton" parent="JoystickRight"]
 position = Vector2(-35, -33)
 scale = Vector2(0.714894, 0.705628)
-texture_normal = ExtResource("1_c7whb")
+texture_normal = null
 
 [node name="Stick" type="Sprite2D" parent="JoystickRight/Analog"]
 position = Vector2(118.899, 114.791)
-texture = ExtResource("2_r164a")
+texture = null
 
 [connection signal="pressed" from="JoystickRight/Analog" to="." method="_on_analog_right_pressed"]
 [connection signal="released" from="JoystickRight/Analog" to="." method="_on_analog_right_released"]

@@ -1,0 +1,81 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b1sev7ioe6me8"
+path="res://.godot/imported/HouseAndPropsAssetPack.gltf-6bc48adaeb67f12a0f8d8fa26a324546.scn"
+
+[deps]
+
+source_file="res://models/HouseAndPropsPack/gltf/HouseAndPropsAssetPack.gltf"
+dest_files=["res://.godot/imported/HouseAndPropsAssetPack.gltf-6bc48adaeb67f12a0f8d8fa26a324546.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name="Scene Root"
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"Doors": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Doors.material"
+},
+"Floor": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Wood_1.material"
+},
+"Glass": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Glass.material"
+},
+"Road": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Stone_1.material"
+},
+"Roof": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Roof_Tiles.material"
+},
+"TrimProps": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Trim_Props.material"
+},
+"Trim_Bricks": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Trim_Bricks.material"
+},
+"Trim_Wood": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Trim_Wood.material"
+},
+"Wall_Interior": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wall_Log.material"
+},
+"Wall_Outer": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wall_Log.material"
+},
+"WoodDeck": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wood_Deck.material"
+}
+}
+}
+gltf/naming_version=0
+gltf/embedded_image_handling=1

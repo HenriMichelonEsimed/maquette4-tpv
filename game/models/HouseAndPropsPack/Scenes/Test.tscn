@@ -1,0 +1,159 @@
+[gd_scene load_steps=40 format=3 uid="uid://bnuuewd3ndnoq"]
+
+[ext_resource type="PackedScene" uid="uid://b1sev7ioe6me8" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/gltf/HouseAndPropsAssetPack.gltf" id="1_yldht"]
+[ext_resource type="Material" uid="uid://dtfjgq8jjtpv1" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wall_Bricks.material" id="2_ufccj"]
+[ext_resource type="Material" uid="uid://btgcyb76nswac" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Trim_Bricks.material" id="3_ed3q8"]
+[ext_resource type="Material" uid="uid://cr35py5yx8oiv" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Doors.material" id="4_es5er"]
+[ext_resource type="Material" uid="uid://ctxnx0d3xf651" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wall_Lime.material" id="5_01tox"]
+[ext_resource type="Material" uid="uid://b276x6gpqscoc" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Stone_3.material" id="5_vtwb3"]
+[ext_resource type="Material" uid="uid://jxvwxdfeol0l" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Ground.material" id="6_brjqc"]
+[ext_resource type="Material" uid="uid://dp1epe3n1m23" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wall_Log.material" id="6_dhjv6"]
+[ext_resource type="Material" uid="uid://dbjbcecq212x0" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Roof_Riet.material" id="6_xqrq2"]
+[ext_resource type="Material" uid="uid://h6qfcgeo6wx6" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Stone_2.material" id="7_ckq67"]
+[ext_resource type="Material" uid="uid://ddh6wa20e7npw" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Grass.material" id="7_osreh"]
+[ext_resource type="Material" uid="uid://c8e1dkq4vy1v1" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Glass.material" id="8_2nfge"]
+[ext_resource type="Material" uid="uid://dhf2ipcm6ggqf" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Roof_Tiles.material" id="9_wxwrm"]
+[ext_resource type="Material" uid="uid://chf0qib4mc6ak" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Stone_1.material" id="10_oarmc"]
+[ext_resource type="Material" uid="uid://clxn8f8ovhspv" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Wood_1.material" id="12_dtt1t"]
+[ext_resource type="Material" uid="uid://oy0hs84vtoji" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Trim_Props.material" id="12_up2bk"]
+[ext_resource type="Material" uid="uid://cuyj4a7whw2jo" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Wood_Deck.material" id="13_gcmmr"]
+[ext_resource type="Material" uid="uid://cuef5rmqw6vug" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Wood_2.material" id="13_ox7js"]
+[ext_resource type="Material" uid="uid://nxgkmsw7kkb6" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Wood_3.material" id="14_7i4p8"]
+[ext_resource type="Material" uid="uid://bb4nfxcjhenmq" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Trim_Wood.material" id="17_ylk6n"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n6s7i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_johbm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_aojsk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_73o81"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ajg5m"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hsyv4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i8qbs"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_24lff"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q32j5"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lrwht"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rlrx7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nsso3"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wjhv1"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_or3lk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uosic"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_djjif"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8q8rm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dc53d"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pj4j4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="HouseAndPropsAssetPack" parent="." instance=ExtResource("1_yldht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.8394, 0, -53.0743)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_n6s7i")
+surface_material_override/0 = ExtResource("2_ufccj")
+
+[node name="MeshInstance3D19" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.37045)
+mesh = SubResource("CylinderMesh_johbm")
+surface_material_override/0 = ExtResource("3_ed3q8")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.48378, 0, 7.74586)
+mesh = SubResource("CylinderMesh_aojsk")
+surface_material_override/0 = ExtResource("4_es5er")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.86754)
+mesh = SubResource("CylinderMesh_73o81")
+surface_material_override/0 = ExtResource("5_vtwb3")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39607, 0, 0)
+mesh = SubResource("CylinderMesh_ajg5m")
+surface_material_override/0 = ExtResource("5_01tox")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39607, 0, 1.36807)
+mesh = SubResource("CylinderMesh_hsyv4")
+surface_material_override/0 = ExtResource("6_xqrq2")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39607, 0, 2.86754)
+mesh = SubResource("CylinderMesh_i8qbs")
+surface_material_override/0 = ExtResource("7_ckq67")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.999899, -0.0141891, 0, 0.0141891, -0.999899, 0, 0, 0, 1, -2.90866, 0, 0)
+mesh = SubResource("CylinderMesh_24lff")
+surface_material_override/0 = ExtResource("6_dhjv6")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90866, 0, 1.36807)
+mesh = SubResource("CylinderMesh_q32j5")
+surface_material_override/0 = ExtResource("9_wxwrm")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90866, 0, 2.86754)
+mesh = SubResource("CylinderMesh_lrwht")
+surface_material_override/0 = ExtResource("10_oarmc")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.30637)
+mesh = SubResource("CylinderMesh_rlrx7")
+surface_material_override/0 = ExtResource("12_dtt1t")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.67444)
+mesh = SubResource("CylinderMesh_nsso3")
+surface_material_override/0 = ExtResource("13_ox7js")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999944, 0.0105416, 0, -0.0105416, 0.999944, 0, 0, 0, 1, 0, 0, 7.17391)
+mesh = SubResource("CylinderMesh_wjhv1")
+surface_material_override/0 = ExtResource("14_7i4p8")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39607, 0, 4.30637)
+mesh = SubResource("CylinderMesh_or3lk")
+surface_material_override/0 = ExtResource("12_up2bk")
+
+[node name="MeshInstance3D14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39607, 0, 5.67444)
+mesh = SubResource("CylinderMesh_uosic")
+surface_material_override/0 = ExtResource("13_gcmmr")
+
+[node name="MeshInstance3D15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.39607, 0, 7.17391)
+mesh = SubResource("CylinderMesh_djjif")
+surface_material_override/0 = ExtResource("17_ylk6n")
+
+[node name="MeshInstance3D16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90866, 0, 4.30637)
+mesh = SubResource("CylinderMesh_8q8rm")
+surface_material_override/0 = ExtResource("6_brjqc")
+
+[node name="MeshInstance3D17" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999943, 0, 0.0106289, 0, 1, 0, -0.0106289, 0, 0.999943, -2.90866, 0, 5.67444)
+mesh = SubResource("CylinderMesh_dc53d")
+surface_material_override/0 = ExtResource("7_osreh")
+
+[node name="MeshInstance3D18" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90866, 0, 7.17391)
+mesh = SubResource("CylinderMesh_pj4j4")
+surface_material_override/0 = ExtResource("8_2nfge")

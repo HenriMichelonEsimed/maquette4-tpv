@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://iwogrx6eliso"]
+
+[ext_resource type="Material" uid="uid://chf0qib4mc6ak" path="res://Assets/LoafbrrAssets/HouseAndPropsPack/Material/Floor_Stone_1.material" id="1_p1eig"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w0cix"]
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 1e-05, 4.00002),
+"format": 4097,
+"index_count": 3,
+"index_data": PackedByteArray(1, 0, 2, 0, 0, 0),
+"name": "Road",
+"primitive": 3,
+"vertex_count": 3,
+"vertex_data": PackedByteArray(218, 255, 255, 191, 0, 0, 0, 0, 19, 0, 0, 64, 19, 0, 0, 192, 0, 0, 0, 0, 218, 255, 255, 191, 218, 255, 255, 63, 0, 0, 0, 0, 19, 0, 0, 192)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_timjp"]
+resource_name = "HouseAndPropsAssetPack_Road_Corner_Tri_A"
+_surfaces = [{
+"aabb": AABB(-2, 0, -2, 4, 1e-05, 4.00002),
+"attribute_data": PackedByteArray(0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 128, 63, 0, 0, 0, 0),
+"format": 4119,
+"index_count": 3,
+"index_data": PackedByteArray(1, 0, 2, 0, 0, 0),
+"material": ExtResource("1_p1eig"),
+"name": "Road",
+"primitive": 3,
+"vertex_count": 3,
+"vertex_data": PackedByteArray(218, 255, 255, 191, 0, 0, 0, 0, 19, 0, 0, 64, 255, 127, 255, 255, 255, 255, 255, 191, 19, 0, 0, 192, 0, 0, 0, 0, 218, 255, 255, 191, 255, 127, 255, 255, 255, 255, 255, 191, 218, 255, 255, 63, 0, 0, 0, 0, 19, 0, 0, 192, 255, 127, 255, 255, 255, 255, 255, 191)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_w0cix")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_s6uts"]
+data = PackedVector3Array(-2, 0, -2, 2, 0, -2, -2, 0, 2)
+
+[node name="Road_Corner_Tri_A" type="MeshInstance3D"]
+mesh = SubResource("ArrayMesh_timjp")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_s6uts")

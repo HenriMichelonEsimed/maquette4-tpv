@@ -12,9 +12,9 @@ const walking_speed:float = 5
 const running_speed:float = 8
 const jump_speed:float = 5
 const mouse_sensitivity:float = 0.005
-const joystick_sensitivity:float = 0.04
-const max_camera_angle_up:float = deg_to_rad(60)
-const max_camera_angle_down:float = -deg_to_rad(75)
+const joystick_sensitivity:float = 0.02
+const max_camera_angle_up:float = deg_to_rad(50)
+const max_camera_angle_down:float = -deg_to_rad(30)
 const anim_blend:float = 0.2
 
 var anim:AnimationPlayer
@@ -100,8 +100,7 @@ func _physics_process(delta):
 		for index in range(get_slide_collision_count()):
 			var collision = get_slide_collision(index)
 			var collider = collision.get_collider()
-			if collider == null:
-				continue
+			if collider == null: continue
 			if collider.is_in_group("stairs"):
 				velocity.y = 1.5
 	else:
