@@ -1,6 +1,7 @@
 class_name PlayerInteractions extends RayCast3D
 
 @export var camera:Node3D
+@export var player:Player
 
 signal display_info(node:Node3D)
 signal hide_info()
@@ -13,7 +14,7 @@ func _unhandled_input(event):
 		_next_body()
 
 func _input(_event):
-	if Input.is_action_just_released("use"):
+	if Input.is_action_just_released("use") and player.mouse_captured:
 		action_use()
 
 func _next_body():

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkvmydfn5saxg"
-path="res://.godot/imported/joystick_tip.png-45069ca98f65a2a9cc16f1864712ef1d.ctex"
+uid="uid://dxwhf32lehedn"
+path="res://.godot/imported/b_button_pressed.png-a8dee62706d710dcf5dca61b64e084e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/joystick/textures - Copie/joystick_tip.png"
-dest_files=["res://.godot/imported/joystick_tip.png-45069ca98f65a2a9cc16f1864712ef1d.ctex"]
+source_file="res://assets/controllers/touch/b_button_pressed.png"
+dest_files=["res://.godot/imported/b_button_pressed.png-a8dee62706d710dcf5dca61b64e084e2.ctex"]
 
 [params]
 

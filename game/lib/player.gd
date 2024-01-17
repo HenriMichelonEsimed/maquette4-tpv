@@ -12,7 +12,7 @@ const walking_speed:float = 5
 const running_speed:float = 8
 const jump_speed:float = 5
 const mouse_sensitivity:float = 0.005
-const joystick_sensitivity:float = 0.05
+const joystick_sensitivity:float = 0.04
 const max_camera_angle_up:float = deg_to_rad(60)
 const max_camera_angle_down:float = -deg_to_rad(75)
 const anim_blend:float = 0.2
@@ -47,7 +47,7 @@ func _ready():
 	else:
 		look_sensitivity = mouse_sensitivity
 		capture_mouse()
-	anim.play(Consts.ANIM_IDLE)
+	anim.play(anim_group + Consts.ANIM_IDLE)
 
 func _input(event):
 	if (event is InputEventScreenDrag) or (mouse_captured and (event is InputEventMouseMotion)):
@@ -66,12 +66,8 @@ func _physics_process(delta):
 			rotate_y(-look_dir.x * 2.0)
 			camera.rotate_x(-look_dir.y)
 			camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
-	if Input.is_action_pressed("use") and (not attack_cooldown) and (GameState.current_item != null) and (GameState.current_item is ItemWeapon) and (interactions.target_node == null):
-		anim.play(anim_group + Consts.ANIM_ATTACK, 0.2, attack_speed_scale)
-		hit_allowed = true
-		timer_use.wait_time =  GameMechanics.attack_cooldown(GameState.current_item.speed)
-		attack_cooldown = true
-		timer_use.start()
+	if (Input.is_action_pressed("use") and mouse_captured):
+		attack()
 	if (attack_cooldown): 
 		_regen_endurance()
 		return
@@ -122,6 +118,14 @@ func _regen_endurance():
 		GameState.player_state.endurance += 1
 		endurance_change.emit()
 
+func attack():
+	if (not attack_cooldown) and (GameState.current_item != null) and (GameState.current_item is ItemWeapon) and (interactions.target_node == null):
+		anim.play(anim_group + Consts.ANIM_ATTACK, 0.2, attack_speed_scale)
+		hit_allowed = true
+		timer_use.wait_time =  GameMechanics.attack_cooldown(GameState.current_item.speed)
+		attack_cooldown = true
+		timer_use.start()
+
 func move(pos:Vector3, rot:Vector3):
 	position = pos
 	rotation = rot
@@ -167,3 +171,9 @@ func set_pos():
 
 func _on_timer_use_timeout():
 	attack_cooldown = false
+
+func _on_use_pressed():
+	if (interactions.target_node != null):
+		interactions.action_use()
+	else:
+		attack()

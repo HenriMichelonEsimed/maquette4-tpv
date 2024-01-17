@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://clr5j1ag0cu53"]
+[gd_scene load_steps=8 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
 [ext_resource type="PackedScene" uid="uid://mglr65d8egx6" path="res://scenes/characters/player.scn" id="2_r36xu"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://scenes/ui/joystick/virtual_joystick.tscn" id="3_ye148"]
+[ext_resource type="Texture2D" uid="uid://b2u5sspdsaj0h" path="res://assets/controllers/touch/a_button.png" id="4_imw7r"]
 [ext_resource type="Script" path="res://lib/player_interactions.gd" id="4_rvpbv"]
+[ext_resource type="Texture2D" uid="uid://dy8pkylqpqx7b" path="res://assets/controllers/touch/a_button_pressed.png" id="5_13mt2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2wdg6"]
 radius = 0.41548
@@ -27,12 +29,32 @@ offset_top = -151.0
 offset_right = 301.0
 offset_bottom = 149.0
 scale = Vector2(0.5, 0.5)
-pressed_color = Color(0.462745, 0.788235, 0.972549, 1)
+pressed_color = Color(0.670588, 0.670588, 0.670588, 1)
 use_input_actions = false
 action_left = "move_left"
 action_right = "move_right"
 action_up = "move_forward"
 action_down = "move_backwards"
+
+[node name="Control" type="Control" parent="Joysticks"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -135.0
+offset_top = -80.0
+offset_right = -66.0
+offset_bottom = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Use" type="TouchScreenButton" parent="Joysticks/Control"]
+position = Vector2(-4, 4)
+scale = Vector2(0.5, 0.478)
+texture_normal = ExtResource("4_imw7r")
+texture_pressed = ExtResource("5_13mt2")
 
 [node name="TimerUse" type="Timer" parent="."]
 process_callback = 0
@@ -44,11 +66,13 @@ transform = Transform3D(1, 0, 0, 0, 0.985809, 0.16787, 0, -0.16787, 0.985809, 0.
 near = 0.1
 far = 300.0
 
-[node name="RayCastInteractions" type="RayCast3D" parent="." node_paths=PackedStringArray("camera")]
+[node name="RayCastInteractions" type="RayCast3D" parent="." node_paths=PackedStringArray("camera", "player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0119203, 1.60871, -0.179028)
 target_position = Vector3(0, 0, -1)
 collision_mask = 12
 script = ExtResource("4_rvpbv")
 camera = NodePath("../Camera")
+player = NodePath("..")
 
+[connection signal="pressed" from="Joysticks/Control/Use" to="." method="_on_use_pressed"]
 [connection signal="timeout" from="TimerUse" to="." method="_on_timer_use_timeout"]
