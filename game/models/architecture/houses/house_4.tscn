@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://dq3diy2x030b" path="res://assets/materials/architecture/WoodSiding011.res" id="2_q7v6l"]
 [ext_resource type="Material" uid="uid://temlvilf84e7" path="res://assets/materials/architecture/Planks037A.res" id="2_uem77"]
 [ext_resource type="Material" uid="uid://i10f1jw4bpnc" path="res://assets/materials/architecture/Planks024C.res" id="3_j3uvp"]
-[ext_resource type="PackedScene" path="res://models/props/interiors/bed_single_matress_1.tscn" id="6_0jc2k"]
+[ext_resource type="PackedScene" uid="uid://cre8h3tm2728w" path="res://models/props/interiors/bed_single_matress_1.tscn" id="6_0jc2k"]
 [ext_resource type="Material" uid="uid://c8e1dkq4vy1v1" path="res://models/HouseAndPropsPack/Material/Glass.material" id="6_qifjg"]
 [ext_resource type="PackedScene" uid="uid://bgrlpdff5fa6f" path="res://models/props/interiors/props_table_square_6.tscn" id="7_8xm4n"]
 [ext_resource type="PackedScene" path="res://models/props/interiors/props_stool_1.tscn" id="8_6drl2"]
