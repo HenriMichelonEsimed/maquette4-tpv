@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://csg41l58oc5u6"]
+
+[ext_resource type="PackedScene" uid="uid://vdbde2p4tmfx" path="res://models/props/interiors/candle_stick_1.glb" id="1_2ladj"]
+[ext_resource type="Material" uid="uid://bje7dupbcuvia" path="res://assets/materials/props/Metal047B.tres" id="2_1qikv"]
+[ext_resource type="Material" uid="uid://bqvnh0ronfmjn" path="res://assets/materials/props/candle_1.tres" id="3_e87ry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tevau"]
+albedo_color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="candle_stick_1" instance=ExtResource("1_2ladj")]
+
+[node name="Cylinder_004" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tevau")
+
+[node name="Torus_002" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_1qikv")
+
+[node name="Cylinder_003" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_1qikv")
+
+[node name="Cylinder_002" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_1qikv")
+
+[node name="Torus" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_1qikv")
+
+[node name="Cylinder_001" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_1qikv")
+
+[node name="Cylinder" parent="." index="6"]
+surface_material_override/0 = ExtResource("3_e87ry")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.159616, 0)
+light_color = Color(1, 1, 0.768627, 1)
+shadow_enabled = true

@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://bla2nillinx00"]
+
+[ext_resource type="Texture2D" uid="uid://kfr05j623lfn" path="res://assets/textures/props/Fabric_woven_pattern/bed_single_matress_1_Fabric-woven pattern-basecolor.jpg" id="1_aty4e"]
+[ext_resource type="Texture2D" uid="uid://bfg0drcc78p8s" path="res://assets/textures/props/Fabric_woven_pattern/bed_single_matress_1_Fabric-woven pattern-metallic.png" id="2_co17a"]
+[ext_resource type="Texture2D" uid="uid://lq8lvqpxqc07" path="res://assets/textures/props/Fabric_woven_pattern/bed_single_matress_1_Fabric-woven pattern-normal.jpg" id="3_q3lvb"]
+[ext_resource type="Texture2D" uid="uid://mg6ql6jiwosa" path="res://assets/textures/props/Fabric_woven_pattern/bed_single_matress_1_Fabric-woven pattern-roughness.png" id="4_ru7ec"]
+
+[resource]
+albedo_texture = ExtResource("1_aty4e")
+metallic = 1.0
+metallic_texture = ExtResource("2_co17a")
+roughness_texture = ExtResource("4_ru7ec")
+normal_enabled = true
+normal_texture = ExtResource("3_q3lvb")
+uv1_scale = Vector3(0.01, 0.01, 0.01)
+uv1_triplanar = true
