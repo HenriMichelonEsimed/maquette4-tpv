@@ -177,3 +177,9 @@ func _on_use_pressed():
 		interactions.action_use()
 	else:
 		attack()
+
+func _on_run_pressed():
+	Input.action_press("run")
+
+func _on_run_released():
+	Input.action_release("run")
