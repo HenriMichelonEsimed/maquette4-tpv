@@ -96,7 +96,7 @@ func _physics_process(delta):
 				anim.play(anim_group + Consts.ANIM_RUN, anim_blend)
 		else:
 			if (anim.current_animation != anim_group + Consts.ANIM_WALK):
-				anim.play(anim_group + Consts.ANIM_WALK, anim_blend)
+				anim.play(anim_group + Consts.ANIM_WALK)
 		for index in range(get_slide_collision_count()):
 			var collision = get_slide_collision(index)
 			var collider = collision.get_collider()

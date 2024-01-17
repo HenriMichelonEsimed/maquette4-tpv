@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b8uhc7ycyxwdh" path="res://assets/textures/clothes/armor_2/free_female_armor__game_4.png" id="15_3ivpl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qt2qs"]
+cull_mode = 2
 albedo_texture = ExtResource("13_rpxym")
 roughness_texture = ExtResource("15_3ivpl")
 normal_enabled = true
@@ -93,7 +94,6 @@ bones/42/rotation = Quaternion(-2.10859e-06, 1.84308e-06, -4.34503e-07, 1)
 bones/44/rotation = Quaternion(-0.0656973, 0.00135621, 0.0621652, 0.9959)
 bones/44/scale = Vector3(1, 1, 1)
 bones/45/rotation = Quaternion(0.0116881, -0.00358811, -0.0109722, 0.999865)
-bones/45/scale = Vector3(1, 1, 1)
 bones/46/rotation = Quaternion(-0.00162419, -2.65463e-05, 0.00931302, 0.999955)
 bones/46/scale = Vector3(1, 1, 1)
 bones/47/rotation = Quaternion(-0.0693019, -0.00190765, 0.0654472, 0.995445)
@@ -124,7 +124,6 @@ bones/63/rotation = Quaternion(-3.20538e-06, 0.707107, 2.8448e-07, 0.707107)
 bones/63/scale = Vector3(1, 1, 1)
 bones/65/rotation = Quaternion(-6.73418e-05, -9.48642e-06, 0.0432611, 0.999064)
 bones/66/rotation = Quaternion(4.00603e-06, -1.29653e-05, 0.100964, 0.99489)
-bones/66/scale = Vector3(1, 1, 1)
 bones/67/rotation = Quaternion(-1.29162e-06, 2.62299e-05, -0.0481619, 0.99884)
 bones/68/rotation = Quaternion(1, -0.000242482, 9.74033e-05, -1.17092e-05)
 bones/68/scale = Vector3(1, 1, 1)
@@ -151,7 +150,7 @@ transform = Transform3D(1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_say3g")
 
 [node name="HandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="12"]
-transform = Transform3D(0.0874337, -0.988417, 0.124043, 0.996111, 0.0881045, -7.87511e-05, -0.0108509, 0.123568, 0.992277, -63.9679, 135.48, -6.03097)
+transform = Transform3D(0.0874338, -0.988417, 0.124043, 0.996111, 0.0881044, -7.98444e-05, -0.0108498, 0.123568, 0.992277, -63.9679, 135.48, -6.03093)
 bone_name = "hand_r"
 bone_idx = 43
 
@@ -159,7 +158,7 @@ bone_idx = 43
 transform = Transform3D(0, 0.999998, -5.96046e-08, -2.98023e-08, -5.96046e-08, -0.999998, -0.999999, 0, 5.96046e-08, -2.25634, 8.93727, 1.54482)
 
 [node name="CameraAttachement" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="13"]
-transform = Transform3D(1, 4.84401e-06, 1.19037e-05, -4.84475e-06, 1, -2.98023e-08, -1.19034e-05, -5.96046e-08, 1, 0.0433403, 148.139, -1.99531)
+transform = Transform3D(1, 4.83466e-06, 1.19024e-05, -4.83395e-06, 1, -1.2219e-06, -1.19022e-05, 1.2517e-06, 1, 0.0433403, 148.139, -1.99525)
 bone_name = "head"
 bone_idx = 62
 
