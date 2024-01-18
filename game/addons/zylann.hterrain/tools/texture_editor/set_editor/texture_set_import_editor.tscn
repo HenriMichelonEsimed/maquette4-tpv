@@ -1,13 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://3indvrto5vd5"]
 
-[ext_resource type="PackedScene" path="res://addons/zylann.hterrain/tools/util/dialog_fitter.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ci6t3s7ddrjwm" path="res://addons/zylann.hterrain/tools/util/dialog_fitter.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dqgaomu3tr1ym" path="res://addons/zylann.hterrain/tools/texture_editor/set_editor/source_file_item_editor.tscn" id="3"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/tools/texture_editor/set_editor/texture_set_import_editor.gd" id="4"]
 
 [node name="TextureSetImportEditor" type="AcceptDialog"]
 title = "Texture Set Import Tool"
-size = Vector2i(652, 623)
+position = Vector2i(0, 36)
+size = Vector2i(652, 800)
 min_size = Vector2i(652, 480)
+max_size = Vector2i(652, 800)
 script = ExtResource("4")
 
 [node name="Import" type="VBoxContainer" parent="."]
@@ -21,7 +23,6 @@ offset_bottom = -18.0
 
 [node name="HS" type="HSplitContainer" parent="Import"]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="VB" type="VBoxContainer" parent="Import/HS"]
 layout_mode = 2
@@ -194,12 +195,10 @@ custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
 [node name="DialogFitter" parent="." instance=ExtResource("1")]
-layout_mode = 3
-anchors_preset = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 644.0
-offset_bottom = 605.0
+offset_bottom = 782.0
 
 [connection signal="item_selected" from="Import/HS/VB/SlotsList" to="." method="_on_SlotsList_item_selected"]
 [connection signal="pressed" from="Import/HS/VB/HB/AddSlotButton" to="." method="_on_AddSlotButton_pressed"]
