@@ -13,7 +13,7 @@
 size = Vector3(0.67041, 1.60535, 0.724213)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jfds7"]
-size = Vector3(0.260529, 0.155396, 0.268799)
+size = Vector3(0.186905, 0.155396, 0.36554)
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
@@ -72,6 +72,7 @@ one_shot = true
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.985809, 0.16787, 0, -0.16787, 0.985809, 0.499269, 1.74461, 0.823024)
 current = true
+fov = 70.0
 near = 0.1
 far = 300.0
 
@@ -86,7 +87,7 @@ player = NodePath("..")
 [node name="Character" parent="." instance=ExtResource("6_yj2x5")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.504929, 1.75106, 0.793368)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.541741, 1.75106, 0.744998)
 shape = SubResource("BoxShape3D_jfds7")
 
 [connection signal="pressed" from="Joysticks/Control/Use" to="." method="_on_use_pressed"]
