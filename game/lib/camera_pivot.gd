@@ -4,17 +4,17 @@ class_name CameraPivot extends Node3D
 
 @onready var camera:Camera3D = $Camera
 @onready var raycast_to_walls:RayCast3D = $Camera/RayCastToWalls
+@onready var raycast_to_floor:RayCast3D = $RayCastToFloor
 @onready var near:Node3D = $Near
 @onready var far:Node3D = $Far
 
 
 const raycast_targets = [
-	Vector3(-1, 0, 0),
-	Vector3(-1, 0, -2),
-	Vector3(1, 0, 0),
-	Vector3(1, 0, -2),
+	Vector3(-0.5, 0, 0),
+	Vector3(-0.5, 0, -1),
+	Vector3(0.5, 0, 0),
+	Vector3(0.5, 0, -1),
 	Vector3(0, 0, -2.5),
-	Vector3(0, -4, 0),
 ]
 
 var camera_change:Tween
@@ -54,9 +54,9 @@ func _physics_process(_delta):
 	
 func is_colliding():
 	for target:Vector3 in raycast_targets:
-		raycast_to_walls.target_position = target * 2
+		raycast_to_walls.target_position = target
 		raycast_to_walls.force_raycast_update()
 		if (raycast_to_walls.is_colliding()):
 			return true
-	return false
+	return raycast_to_floor.is_colliding()
 

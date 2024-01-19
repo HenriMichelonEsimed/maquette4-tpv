@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bb8aqea87uhhw" path="res://scenes/characters/player_2.tscn" id="6_yj2x5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7gbjc"]
-size = Vector3(0.67041, 1.60535, 0.724213)
+size = Vector3(0.558472, 1.65277, 0.418602)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ljan"]
 
@@ -19,7 +19,7 @@ collision_layer = 3
 script = ExtResource("1_uojmw")
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020752, 0.802911, -0.0719757)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008606, 0.826622, 0.01511)
 shape = SubResource("BoxShape3D_7gbjc")
 
 [node name="Joysticks" type="CanvasLayer" parent="."]
@@ -77,7 +77,7 @@ script = ExtResource("4_rvpbv")
 [node name="Character" parent="." instance=ExtResource("6_yj2x5")]
 
 [node name="CameraNear" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255044, 1.61056, 0.399972)
+transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.3)
 shape = SubResource("SphereShape3D_5ljan")
 
 [connection signal="pressed" from="Joysticks/Control/Use" to="." method="_on_use_pressed"]
