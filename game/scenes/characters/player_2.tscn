@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgy7iqap8380w"]
+[gd_scene load_steps=14 format=3 uid="uid://dgy7iqap8380w"]
 
-[ext_resource type="PackedScene" uid="uid://bvmthdob83w7j" path="res://models/characters/player_2/player_2.glb" id="1_w8imo"]
 [ext_resource type="Material" uid="uid://d2ugknnbemfxr" path="res://assets/materials/player_2/body.res" id="2_kqwuu"]
 [ext_resource type="AnimationLibrary" uid="uid://0tfvk230ihw8" path="res://assets/animations/cc4/sword.res" id="2_opm2o"]
 [ext_resource type="Material" uid="uid://rxj7uho5gke6" path="res://assets/materials/player_2/chest.res" id="3_kjdhp"]
@@ -27,7 +26,7 @@ roughness_texture = ExtResource("12_mlgya")
 normal_enabled = true
 normal_texture = ExtResource("11_m7lvn")
 
-[node name="Character" instance=ExtResource("1_w8imo")]
+[node name="Character"]
 
 [node name="Armature" parent="." index="0"]
 transform = Transform3D(-0.01, 0, 8.74228e-10, 0, 0.01, 0, -8.74228e-10, 0, -0.01, 0, 0, 0)

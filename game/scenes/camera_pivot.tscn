@@ -7,13 +7,16 @@ script = ExtResource("1_u7yli")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+fov = 70.0
+near = 0.1
+far = 300.0
 
 [node name="RayCastToWalls" type="RayCast3D" parent="Camera"]
 target_position = Vector3(0, 0, 0)
 collision_mask = 512
 
 [node name="Far" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.5)
 
 [node name="Near" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.3)
