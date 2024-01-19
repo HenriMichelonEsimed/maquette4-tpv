@@ -1,7 +1,6 @@
 class_name Player extends CharacterBody3D
 
 @onready var character:Node3D = $Character
-@onready var joystick_left:VirtualJoystick = $Joysticks/Left
 @onready var interactions:PlayerInteractions = $RayCastInteractions
 @onready var timer_use:Timer = $TimerUse
 
@@ -61,10 +60,6 @@ func _input(event):
 		camera_pivot.rotate_y(-event.relative.x * look_sensitivity)
 		camera_pivot.camera.rotate_x(event.relative.y * look_sensitivity * mouse_y_axis)
 		camera_pivot.camera.rotation.x = clampf(camera_pivot.camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
-		#if (camera_pivot.is_colliding()): 
-		#	rotation = prev_rotation
-		#	camera_pivot.rotation = prev_cam_pivot_rotation
-		#	camera_pivot.camera.rotation = prev_cam_rotation
 	if mouse_captured and Input.is_action_just_pressed("cancel"):
 		release_mouse()
 
@@ -89,13 +84,8 @@ func _physics_process(delta):
 	var run = Input.is_action_pressed("run")
 	var speed = running_speed if run else walking_speed
 	var direction = Vector3.ZERO
-	if (touch_controls):
-		direction = transform.basis * Vector3(joystick_left.output.x, 0, joystick_left.output.y)
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		var input = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
-		direction = transform.basis * Vector3(input.x, 0, input.y)
+	var input = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
+	direction = transform.basis * Vector3(input.x, 0, input.y)
 	velocity.x = direction.x * speed
 	velocity.z = direction.z * speed
 	if  direction != Vector3.ZERO:
@@ -184,15 +174,3 @@ func set_pos():
 
 func _on_timer_use_timeout():
 	attack_cooldown = false
-
-func _on_use_pressed():
-	if (interactions.target_node != null):
-		interactions.action_use()
-	else:
-		attack()
-
-func _on_run_pressed():
-	Input.action_press("run")
-
-func _on_run_released():
-	Input.action_release("run")
