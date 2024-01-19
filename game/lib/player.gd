@@ -1,11 +1,11 @@
 class_name Player extends CharacterBody3D
 
-@onready var camera:Camera3D = $Camera
 @onready var character:Node3D = $Character
 @onready var joystick_left:VirtualJoystick = $Joysticks/Left
 @onready var interactions:PlayerInteractions = $RayCastInteractions
 @onready var timer_use:Timer = $TimerUse
 
+signal player_move()
 signal endurance_change()
 
 const walking_speed:float = 5
@@ -17,6 +17,7 @@ const max_camera_angle_up:float = deg_to_rad(50)
 const max_camera_angle_down:float = -deg_to_rad(30)
 const anim_blend:float = 0.2
 
+var camera_pivot:CameraPivot
 var anim:AnimationPlayer
 var anim_group:String = Consts.ANIM_GROUP_PLAYER + "/"
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -36,6 +37,8 @@ var attack_speed_scale:float = 1.0
 var hit_allowed:bool = false
 
 func _ready():
+	interactions.camera = camera_pivot.camera
+	interactions.player = self
 	touch_controls = Tools.is_mobile()
 	anim = character.get_node("AnimationPlayer")
 	hand_attachement = character.get_node("Armature/Skeleton3D/HandAttachment/AttachmentPoint")
@@ -51,9 +54,17 @@ func _ready():
 
 func _input(event):
 	if (event is InputEventScreenDrag) or (mouse_captured and (event is InputEventMouseMotion)):
+		var prev_rotation = rotation
+		var prev_cam_pivot_rotation = camera_pivot.rotation
+		var prev_cam_rotation = camera_pivot.camera.rotation
 		rotate_y(-event.relative.x * look_sensitivity)
-		camera.rotate_x(event.relative.y * look_sensitivity * mouse_y_axis)
-		camera.rotation.x = clampf(camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
+		camera_pivot.rotate_y(-event.relative.x * look_sensitivity)
+		camera_pivot.camera.rotate_x(event.relative.y * look_sensitivity * mouse_y_axis)
+		camera_pivot.camera.rotation.x = clampf(camera_pivot.camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
+		#if (camera_pivot.is_colliding()): 
+		#	rotation = prev_rotation
+		#	camera_pivot.rotation = prev_cam_pivot_rotation
+		#	camera_pivot.camera.rotation = prev_cam_rotation
 	if mouse_captured and Input.is_action_just_pressed("cancel"):
 		release_mouse()
 
@@ -64,8 +75,9 @@ func _physics_process(delta):
 		if joypad_dir.length() > 0:
 			var look_dir = joypad_dir * delta
 			rotate_y(-look_dir.x * 2.0)
-			camera.rotate_x(-look_dir.y)
-			camera.rotation.x = clamp(camera.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
+			camera_pivot.rotate_y(-look_dir.x * 2.0)
+			camera_pivot.rotate_x(-look_dir.y)
+			camera_pivot.rotation.x = clamp(camera_pivot.rotation.x - look_dir.y,  max_camera_angle_down, max_camera_angle_up)
 	if (Input.is_action_pressed("use") and mouse_captured):
 		attack()
 	if (attack_cooldown): 
@@ -103,12 +115,13 @@ func _physics_process(delta):
 			if collider == null: continue
 			if collider.is_in_group("stairs"):
 				velocity.y = 1.5
+		player_move.emit()
 	else:
 		anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)
 	previous_position = position
 	move_and_slide()
 	if (previous_position == position):
-		anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)
+		anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)		
 	if on_floor and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_speed
 
@@ -128,6 +141,7 @@ func attack():
 func move(pos:Vector3, rot:Vector3):
 	position = pos
 	rotation = rot
+	player_move.emit()
 
 func handle_item():
 	hand_attachement.add_child(GameState.current_item)

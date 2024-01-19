@@ -25,8 +25,8 @@ CurrentItemManager="*res://lib/current_item_manager.gd"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
@@ -149,6 +149,7 @@ pointing/emulate_mouse_from_touch=false
 3d_physics/layer_7="moveable_prop"
 3d_physics/layer_8="water"
 3d_physics/layer_9="enemy"
+3d_physics/layer_10="roofs"
 
 [rendering]
 

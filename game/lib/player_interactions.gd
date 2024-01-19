@@ -1,7 +1,7 @@
 class_name PlayerInteractions extends RayCast3D
 
-@export var camera:Node3D
-@export var player:Player
+var camera:Node3D
+var player:Player
 
 signal display_info(node:Node3D)
 signal hide_info()
