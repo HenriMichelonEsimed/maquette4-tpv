@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dy8pkylqpqx7b" path="res://assets/controllers/touch/a_button_pressed.png" id="5_13mt2"]
 [ext_resource type="Texture2D" uid="uid://be5ql7370cu6m" path="res://assets/controllers/touch/b_button.png" id="5_42r07"]
 [ext_resource type="Texture2D" uid="uid://dxwhf32lehedn" path="res://assets/controllers/touch/b_button_pressed.png" id="6_lcm53"]
-[ext_resource type="PackedScene" uid="uid://bb8aqea87uhhw" path="res://scenes/characters/player_2.tscn" id="6_yj2x5"]
+[ext_resource type="PackedScene" uid="uid://dg6rt3ieyo2un" path="res://scenes/characters/player_3.tscn" id="8_vknf6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7gbjc"]
 size = Vector3(0.558472, 1.65277, 0.418602)
@@ -74,11 +74,11 @@ target_position = Vector3(0, 0, -1)
 collision_mask = 12
 script = ExtResource("4_rvpbv")
 
-[node name="Character" parent="." instance=ExtResource("6_yj2x5")]
-
 [node name="CameraNear" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.3)
 shape = SubResource("SphereShape3D_5ljan")
+
+[node name="Character" parent="." instance=ExtResource("8_vknf6")]
 
 [connection signal="pressed" from="Joysticks/Control/Use" to="." method="_on_use_pressed"]
 [connection signal="pressed" from="Joysticks/Control/Run" to="." method="_on_run_pressed"]

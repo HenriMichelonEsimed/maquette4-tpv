@@ -8,7 +8,7 @@ class_name Player extends CharacterBody3D
 signal player_move()
 signal endurance_change()
 
-const walking_speed:float = 5
+const walking_speed:float = 4
 const running_speed:float = 8
 const jump_speed:float = 5
 const mouse_sensitivity:float = 0.005
