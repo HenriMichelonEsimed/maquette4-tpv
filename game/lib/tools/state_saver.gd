@@ -14,7 +14,9 @@ enum {
 	STATE_ITEMS			= 4,
 	#STATE_EVENTS		= 5,
 	STATE_MESSAGES		= 6,
-	STATE_QUEST			= 7
+	STATE_QUEST			= 7,
+	STATE_INTARRAY 		= 8,
+	
 }
 
 var _last = null
@@ -105,6 +107,10 @@ func saveState(res:State, global:bool=false):
 			file.store_8(STATE_STRINGARRAY)
 			file.store_pascal_string(prop.name)
 			file.store_var(value)
+		elif (value is PackedInt32Array):
+			file.store_8(STATE_INTARRAY)
+			file.store_pascal_string(prop.name)
+			file.store_var(value)
 		elif value is ItemsCollection:
 			file.store_8(STATE_ITEMS)
 			file.store_pascal_string(prop.name)
@@ -140,6 +146,8 @@ func loadState(res:State, global:bool=false):
 		var entry_type = file.get_8()
 		var entry_name = file.get_pascal_string()
 		if (entry_type in [STATE_VARIANT, STATE_STRINGARRAY]):
+			res.set(entry_name, file.get_var())
+		elif (entry_type in [STATE_VARIANT, STATE_INTARRAY]):
 			res.set(entry_name, file.get_var())
 		elif (parent != null 
 			and entry_type in [STATE_USABLE, STATE_FUNCTIONAL]):

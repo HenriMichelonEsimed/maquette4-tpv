@@ -3,8 +3,8 @@ class_name PlayerState extends State
 var zone_name:String = "level_test/level_test"
 var position:Vector3 = Vector3.ZERO
 var rotation:Vector3 = Vector3.ZERO
-var current_item_type:Item.ItemType = Item.ItemType.ITEM_UNKNOWN
-var current_item_key:String = ""
+var current_item_type:Array[Item.ItemType] = [ Item.ItemType.ITEM_UNKNOWN, Item.ItemType.ITEM_UNKNOWN ]
+var current_item_key:Array[String] = [ "", "" ]
 var nickname:String = "Player"
 var sex:bool = true
 #var char:String = "player_0"

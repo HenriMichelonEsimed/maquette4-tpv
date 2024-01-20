@@ -3,23 +3,25 @@ extends Node3D
 var zones:ZonesManager = ZonesManager.new()
 
 func _ready():
-	if not(Tools.is_mobile()):
-		DisplayServer.window_set_size(DisplayServer.window_get_size()*2)
-		get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
-		get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	GameState.player = $Player
 	GameState.ui = $MainUI
 	TranslationServer.set_locale(GameState.settings.lang)
 	NotificationManager.connect("xp_gain", xp_gain)
-	if (GameState.current_item != null):
-		var item = GameState.current_item
-		GameState.current_item = null
-		CurrentItemManager.use(item)
+	if (GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND] != null):
+		var item = GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND]
+		GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND] = null
+		CurrentItemManager.use(item, Item.ItemSlot.SLOT_RIGHT_HAND)
 	else:
 		pass
-		CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "short_sword_1"))
+		CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "short_sword_1"), Item.ItemSlot.SLOT_RIGHT_HAND)
+	if (GameState.current_item[Item.ItemSlot.SLOT_LEFT_HAND] != null):
+		var item = GameState.current_item[Item.ItemSlot.SLOT_LEFT_HAND]
+		GameState.current_item[Item.ItemSlot.SLOT_LEFT_HAND] = null
+		CurrentItemManager.use(item, Item.ItemSlot.SLOT_LEFT_HAND)
+	else:
+		pass
+		CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "shield_1"), Item.ItemSlot.SLOT_LEFT_HAND)
 	GameState.quests.start("main")
 	zones.change_zone(self, GameState.player_state.zone_name)
 	if (GameState.player_state.position != Vector3.ZERO):

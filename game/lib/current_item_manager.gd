@@ -1,31 +1,26 @@
 extends Node
 
-var _previous_item = null
+
+var previous_items:Array = [ null, null ]
 
 func _ready():
 	NotificationManager.connect("use_item", use)
 	NotificationManager.connect("unuse_item", unuse)
 
-func _unhandled_input(_event):
-	if (GameState.current_item == null): 
-		return
-	elif  Input.is_action_just_released("unuse"):
-		unuse()
-
-func use(item:Item):
-	unuse()
-	GameState.current_item = item.dup()
+func use(item:Item, slot:Item.ItemSlot):
+	unuse(slot)
+	GameState.current_item[slot] = item.dup()
 	if (item is ItemMultiple):
-		GameState.current_item.quantity = 1
-	GameState.inventory.remove(GameState.current_item)
-	GameState.player.handle_item()
-	GameState.current_item.use()
-	_previous_item = null
+		GameState.current_item[slot].quantity = 1
+	GameState.inventory.remove(GameState.current_item[slot])
+	GameState.player.handle_item(slot)
+	GameState.current_item[slot].use()
+	previous_items[slot] = null
 
-func unuse():
-	if (GameState.current_item == null): return
-	GameState.player.unhandle_item()
-	GameState.current_item.unuse()
-	_previous_item = GameState.current_item.dup()
-	GameState.inventory.add(_previous_item)
-	GameState.current_item = null
+func unuse(slot:Item.ItemSlot):
+	if (GameState.current_item[slot] == null): return
+	GameState.player.unhandle_item(slot)
+	GameState.current_item[slot].unuse()
+	previous_items[slot] = GameState.current_item[slot].dup()
+	GameState.inventory.add(previous_items[slot])
+	GameState.current_item[slot] = null

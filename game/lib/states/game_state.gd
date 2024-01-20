@@ -13,7 +13,7 @@ var camera:CameraState
 
 var player:Player
 var ui:MainUI
-var current_item = null
+var current_item:Array[Item] = [ null, null ]
 var current_zone:Zone
 var savegame_name:String
 var use_joypad:bool = false
@@ -52,11 +52,8 @@ func save_game(savegame = null):
 	StateSaver.set_path(savegame)
 	player_state.position = player.position
 	player_state.rotation = player.rotation
-	if (current_item != null):
-		player_state.current_item_type = current_item.type
-		player_state.current_item_key = current_item.key
-	else:
-		player_state.current_item_type = Item.ItemType.ITEM_UNKNOWN
+	_save_item(CurrentItemManager.ItemSlot.SLOT_RIGHT_HAND)
+	_save_item(CurrentItemManager.ItemSlot.SLOT_LEFT_HAND)
 	StateSaver.saveState(player_state)
 	StateSaver.saveState(camera)
 	StateSaver.saveState(InventoryState.new(inventory))
@@ -71,12 +68,23 @@ func load_game(savegame = null):
 	StateSaver.set_path(savegame)
 	StateSaver.loadState(player_state)
 	StateSaver.loadState(camera)
-	if (player_state.current_item_type != Item.ItemType.ITEM_UNKNOWN):
-		current_item = Tools.load_item(player_state.current_item_type, player_state.current_item_key)
+	_load_item(Item.ItemSlot.SLOT_RIGHT_HAND)
+	_load_item(Item.ItemSlot.SLOT_LEFT_HAND)
 	StateSaver.loadState(InventoryState.new(inventory))
 	StateSaver.loadState(settings)
 	StateSaver.loadState(QuestsState.new(quests))
 	loading_end.emit()
+
+func _save_item(slot:Item.ItemSlot):
+	if (current_item[slot] != null):
+		player_state.current_item_type[slot] = current_item[slot].type
+		player_state.current_item_key[slot] = current_item[slot].key
+	else:
+		player_state.current_item_typ[slot] = Item.ItemType.ITEM_UNKNOWN
+
+func _load_item(slot:Item.ItemSlot):
+	if (player_state.current_item_type[slot] != Item.ItemType.ITEM_UNKNOWN):
+		current_item[slot] = Tools.load_item(player_state.current_item_type[slot], player_state.current_item_key[slot])
 
 func pause_game():
 	if (ui.menu.visible): return

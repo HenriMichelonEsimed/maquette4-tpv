@@ -9,6 +9,11 @@ enum ItemType {
 	ITEM_QUEST			= 4,
 }
 
+enum ItemSlot {
+	SLOT_RIGHT_HAND	 = 0,
+	SLOT_LEFT_HAND	 = 1
+}
+
 @export var key:String
 @export var label:String
 @export var price:float = 0.0

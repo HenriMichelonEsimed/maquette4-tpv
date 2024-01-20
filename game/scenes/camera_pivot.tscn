@@ -6,21 +6,26 @@
 script = ExtResource("1_u7yli")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
-fov = 70.0
-near = 0.1
-far = 300.0
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+cull_mask = 1048573
+near = 0.15
 
 [node name="RayCastToWalls" type="RayCast3D" parent="Camera"]
 target_position = Vector3(0, 0, 0)
 collision_mask = 512
 
-[node name="Far" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 1.5)
-
-[node name="Near" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.3)
-
 [node name="RayCastToFloor" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 512
+
+[node name="TopDown" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 2.5, 3)
+
+[node name="TPVNear" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.255, 1.611, 0.3)
+
+[node name="TPV" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0.5, 1.8, 0.8)
+
+[node name="FPV" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49, 0)

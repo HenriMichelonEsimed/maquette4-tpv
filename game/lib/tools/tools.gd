@@ -39,8 +39,8 @@ const SHORTCUT_INFO = "info"
 
 const ITEMS_PATH = [ 'weapons', 'tools', 'consum', 'misc', 'quest']
 
-static func is_mobile():
-	return OS.get_name().to_lower() in ["android", "ios"]
+#static func is_mobile():
+#	return OS.get_name().to_lower() in ["android", "ios"]
 
 static func load_shortcut_icon(name:String):
 	var controller = CONTROLLER_KEYBOARD

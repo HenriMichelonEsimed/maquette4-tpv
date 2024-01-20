@@ -12,7 +12,8 @@ func _init():
 func _initialize():
 	damages_roll = $Damages
 	speed_roll = $Speed
-	speed = speed_roll.roll()
+	if (speed_roll != null):
+		speed = speed_roll.roll()
 
 func dup():
 	var d = super.dup()

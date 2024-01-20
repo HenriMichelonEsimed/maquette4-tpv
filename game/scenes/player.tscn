@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://clr5j1ag0cu53"]
+[gd_scene load_steps=8 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
 [ext_resource type="Script" path="res://lib/player_interactions.gd" id="4_rvpbv"]
@@ -8,6 +8,13 @@
 size = Vector3(0.558472, 1.65277, 0.418602)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ljan"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_aqaao"]
+radius = 0.1
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fjv3h"]
+radius = 0.1
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
@@ -28,10 +35,20 @@ target_position = Vector3(0, 0, -1)
 collision_mask = 12
 script = ExtResource("4_rvpbv")
 
+[node name="Character" parent="." instance=ExtResource("8_vknf6")]
+
 [node name="CameraNear" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.3)
 shape = SubResource("SphereShape3D_5ljan")
+disabled = true
 
-[node name="Character" parent="." instance=ExtResource("8_vknf6")]
+[node name="CameraTPV" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0.5, 1.8, 0.8)
+shape = SubResource("SphereShape3D_aqaao")
+disabled = true
+
+[node name="CameraFPV" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49, -0.138954)
+shape = SubResource("SphereShape3D_fjv3h")
 
 [connection signal="timeout" from="TimerUse" to="." method="_on_timer_use_timeout"]

@@ -11,7 +11,10 @@ func have(type:Item.ItemType, key:String) -> bool:
 	return result.size() > 0
 
 func have_or_using(type:Item.ItemType, key:String) -> bool:
-	return have(type, key) or ((GameState.current_item != null) and (GameState.current_item.type == type) and (GameState.current_item.key == key))
+	return have(type, key) or _using(Item.ItemSlot.SLOT_RIGHT_HAND, type, key) or _using(Item.ItemSlot.SLOT_LEFT_HAND, type, key)
+
+func _using(slot:Item.ItemSlot, type:Item.ItemType, key:String) -> bool:
+	return (GameState.current_item[slot] != null) and (GameState.current_item[slot].type == type) and (GameState.current_item[slot].key == key)
 
 func haveitem(item:Item) -> bool:
 	return have(item.type, item.key)

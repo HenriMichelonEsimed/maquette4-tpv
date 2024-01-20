@@ -5,6 +5,7 @@ class_name Player extends CharacterBody3D
 @onready var timer_use:Timer = $TimerUse
 
 signal player_move()
+signal player_change_anim(anim_name:String)
 signal endurance_change()
 
 const walking_speed:float = 4
@@ -20,14 +21,12 @@ var camera_pivot:CameraPivot
 var anim:AnimationPlayer
 var anim_group:String = Consts.ANIM_GROUP_PLAYER + "/"
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var look_sensitivity:float
 var mouse_captured:bool = false
 var look_up_action:String = "look_up"
 var look_down_action:String = "look_down"
 var mouse_y_axis:int = -1
 var previous_position:Vector3
-var hand_attachement:Node3D
-var touch_controls:bool = false
+var item_attachement:Array[Node3D] = [ null, null ]
 # action animation playing
 var attack_cooldown:bool = false
 # weapon speed animation scale
@@ -38,27 +37,20 @@ var hit_allowed:bool = false
 func _ready():
 	interactions.camera = camera_pivot.camera
 	interactions.player = self
-	touch_controls = Tools.is_mobile()
 	anim = character.get_node("AnimationPlayer")
-	hand_attachement = character.get_node("Armature/Skeleton3D/HandAttachment/AttachmentPoint")
+	item_attachement[Item.ItemSlot.SLOT_RIGHT_HAND] = character.get_node("Armature/Skeleton3D/RightHandAttachment/AttachmentPoint")
+	item_attachement[Item.ItemSlot.SLOT_LEFT_HAND] = character.get_node("Armature/Skeleton3D/LeftHandAttachment/AttachmentPoint")
 	if (GameState.player_state.position != Vector3.ZERO):
 		set_pos()
 	set_y_axis()
-	if touch_controls: 
-		look_sensitivity = joystick_sensitivity
-	else:
-		look_sensitivity = mouse_sensitivity
-		capture_mouse()
+	capture_mouse()
 	anim.play(anim_group + Consts.ANIM_IDLE)
 
 func _input(event):
 	if (event is InputEventScreenDrag) or (mouse_captured and (event is InputEventMouseMotion)):
-		var prev_rotation = rotation
-		var prev_cam_pivot_rotation = camera_pivot.rotation
-		var prev_cam_rotation = camera_pivot.camera.rotation
-		rotate_y(-event.relative.x * look_sensitivity)
-		camera_pivot.rotate_y(-event.relative.x * look_sensitivity)
-		camera_pivot.camera.rotate_x(event.relative.y * look_sensitivity * mouse_y_axis)
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		camera_pivot.rotate_y(-event.relative.x * mouse_sensitivity)
+		camera_pivot.camera.rotate_x(event.relative.y * mouse_sensitivity * mouse_y_axis)
 		camera_pivot.camera.rotation.x = clampf(camera_pivot.camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
 	if mouse_captured and Input.is_action_just_pressed("cancel"):
 		release_mouse()
@@ -91,14 +83,15 @@ func _physics_process(delta):
 	if  direction != Vector3.ZERO:
 		#GameState.player_state.endurance -= 2
 		endurance_change.emit()
-		if not touch_controls and not mouse_captured:
-			capture_mouse()
+		capture_mouse()
 		if run and (GameState.player_state.endurance > 0):
 			if (anim.current_animation != anim_group + Consts.ANIM_RUN):
 				anim.play(anim_group + Consts.ANIM_RUN, anim_blend)
+				player_change_anim.emit(Consts.ANIM_RUN)
 		else:
 			if (anim.current_animation != anim_group + Consts.ANIM_WALK):
 				anim.play(anim_group + Consts.ANIM_WALK)
+				player_change_anim.emit(Consts.ANIM_WALK)
 		for index in range(get_slide_collision_count()):
 			var collision = get_slide_collision(index)
 			var collider = collision.get_collider()
@@ -107,11 +100,14 @@ func _physics_process(delta):
 				velocity.y = 1.5
 		player_move.emit()
 	else:
-		anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)
+		if (anim.current_animation != anim_group + Consts.ANIM_IDLE):
+			anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)
+			player_change_anim.emit(Consts.ANIM_IDLE)
 	previous_position = position
 	move_and_slide()
-	if (previous_position == position):
-		anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)		
+	if (previous_position == position) and  (anim.current_animation != anim_group + Consts.ANIM_IDLE):
+		anim.play(anim_group + Consts.ANIM_IDLE, anim_blend)
+		player_change_anim.emit(Consts.ANIM_IDLE)
 	if on_floor and Input.is_action_just_pressed("jump"):
 		velocity.y = jump_speed
 
@@ -121,10 +117,11 @@ func _regen_endurance():
 		endurance_change.emit()
 
 func attack():
-	if (not attack_cooldown) and (GameState.current_item != null) and (GameState.current_item is ItemWeapon) and (interactions.target_node == null):
+	if (not attack_cooldown) and (GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND] != null) and (GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND] is ItemWeapon) and (interactions.target_node == null):
 		anim.play(anim_group + Consts.ANIM_ATTACK, 0.2, attack_speed_scale)
+		player_change_anim.emit(Consts.ANIM_ATTACK)
 		hit_allowed = true
-		timer_use.wait_time =  GameMechanics.attack_cooldown(GameState.current_item.speed)
+		timer_use.wait_time =  GameMechanics.attack_cooldown(GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND].speed)
 		attack_cooldown = true
 		timer_use.start()
 
@@ -133,15 +130,16 @@ func move(pos:Vector3, rot:Vector3):
 	rotation = rot
 	player_move.emit()
 
-func handle_item():
-	hand_attachement.add_child(GameState.current_item)
-	if (GameState.current_item is ItemWeapon):
-		anim_group = GameState.current_item.anim + "/"
-		attack_speed_scale = GameMechanics.anim_scale(GameState.current_item.speed)
+func handle_item(slot:Item.ItemSlot):
+	item_attachement[slot].add_child(GameState.current_item[slot])
+	if (slot == Item.ItemSlot.SLOT_RIGHT_HAND and GameState.current_item[slot] is ItemWeapon):
+		anim_group = GameState.current_item[slot].anim + "/"
+		attack_speed_scale = GameMechanics.anim_scale(GameState.current_item[slot].speed)
 
-func unhandle_item():
-	hand_attachement.remove_child(GameState.current_item)
-	anim_group = Consts.ANIM_GROUP_PLAYER + "/"
+func unhandle_item(slot:Item.ItemSlot):
+	item_attachement[slot].remove_child(GameState.current_item[slot])
+	if (slot == Item.ItemSlot.SLOT_RIGHT_HAND):
+		anim_group = Consts.ANIM_GROUP_PLAYER + "/"
 	
 func look_at_node(node:Node3D):
 	var pos:Vector3 = node.global_position

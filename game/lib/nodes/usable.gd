@@ -39,7 +39,7 @@ func _check_item_use(message_locked:String, message_unlocked:String, tools_to_us
 	var check = false
 	if (GameState.current_item != null):
 		for tool in tools_to_use:
-			if (tool[0] == GameState.current_item.type) and (tool[1] == GameState.current_item.key):
+			if (tool[0] == GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND].type) and (tool[1] == GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND].key):
 				unlocked = true
 				NotificationManager.notif(message_unlocked)
 				unlock.emit(true)
@@ -49,7 +49,7 @@ func _check_item_use(message_locked:String, message_unlocked:String, tools_to_us
 	return check
 	
 func _check_use():
-	if (GameState.current_item != null) and not(GameState.current_item is ItemWeapon):
+	if (GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND] != null) and not(GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND] is ItemWeapon):
 		unlock.emit(false)
 		return false
 	return true
