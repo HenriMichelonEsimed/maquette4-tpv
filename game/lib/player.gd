@@ -3,6 +3,7 @@ class_name Player extends CharacterBody3D
 @onready var character:Node3D = $Character
 @onready var interactions:PlayerInteractions = $RayCastInteractions
 @onready var timer_use:Timer = $TimerUse
+@onready var camera_collision:Area3D = $Area3D
 
 signal player_move()
 signal player_change_anim(anim_name:String)
@@ -48,10 +49,17 @@ func _ready():
 
 func _input(event):
 	if (event is InputEventScreenDrag) or (mouse_captured and (event is InputEventMouseMotion)):
+		var prev_rotation = rotation
+		var prev_cam_pivot_rotation = camera_pivot.rotation
+		var prev_cam_rotation = camera_pivot.camera.rotation
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		camera_pivot.rotate_y(-event.relative.x * mouse_sensitivity)
 		camera_pivot.camera.rotate_x(event.relative.y * mouse_sensitivity * mouse_y_axis)
 		camera_pivot.camera.rotation.x = clampf(camera_pivot.camera.rotation.x, max_camera_angle_down, max_camera_angle_up)
+		if (camera_collision.has_overlapping_bodies()): 
+			rotation = prev_rotation
+			camera_pivot.rotation = prev_cam_pivot_rotation
+			camera_pivot.camera.rotation = prev_cam_rotation
 	if mouse_captured and Input.is_action_just_pressed("cancel"):
 		release_mouse()
 

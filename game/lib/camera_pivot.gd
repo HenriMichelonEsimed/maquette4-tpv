@@ -25,11 +25,11 @@ const camera_change_time:Array[float] = [ 0.3, 0.3, 0.2, 0 ]
 const camera_fov:Array[int] = [ 75, 75, 70, 80 ]
 const camera_fpv_distance:Array[float] = [ -0.25, -0.25, -0.6, -0.25 ]
 var camera_collision:Array[CollisionShape3D]
-var current_camera:CameraView = CameraView.CAMERA_FPV
+var current_camera:CameraView = CameraView.CAMERA_TOPDOWN
 var camera_tween:Tween
 
 func _ready():
-	camera_collision = [ player.get_node("CameraFPV"), player.get_node("CameraTPV"), player.get_node("CameraNear"), player.get_node("CameraFPV")]
+	camera_collision = [ player.get_node("Area3D/CameraTopDown"), player.get_node("CameraTPV"), player.get_node("CameraNear"), player.get_node("CameraFPV")]
 	player.camera_pivot = self
 	_on_player_move()
 	player.connect("player_move", _on_player_move)
@@ -68,12 +68,16 @@ func _on_player_change_anim(anim_name:String):
 	if (current_camera == CameraView.CAMERA_FPV):
 		if (player.anim == null or player.anim.current_animation == Consts.ANIM_IDLE):
 			camera_pivot[current_camera].position.z = camera_fpv_distance[0]
+			camera_collision[current_camera].position.z = camera_fpv_distance[0]
 		elif (player.anim.current_animation.ends_with(Consts.ANIM_WALK)):
 			camera_pivot[current_camera].position.z = camera_fpv_distance[1]
+			camera_collision[current_camera].position.z = camera_fpv_distance[1]
 		elif (player.anim.current_animation.ends_with(Consts.ANIM_RUN)):
 			camera_pivot[current_camera].position.z = camera_fpv_distance[2]
+			camera_collision[current_camera].position.z = camera_fpv_distance[2]
 		elif (player.anim.current_animation.ends_with(Consts.ANIM_ATTACK)):
 			camera_pivot[current_camera].position.z = camera_fpv_distance[3]
+			camera_collision[current_camera].position.z = camera_fpv_distance[3]
 		_change_camera(current_camera, false)
 
 func _change_camera(view:CameraView, change_rotation:bool = true):
