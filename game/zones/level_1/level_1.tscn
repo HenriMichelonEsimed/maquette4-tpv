@@ -1,10 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7xab8odfni8k"]
+[gd_scene load_steps=6 format=3 uid="uid://b7xab8odfni8k"]
 
 [ext_resource type="Script" path="res://lib/nodes/zone.gd" id="1_qpw7r"]
 [ext_resource type="Script" path="res://lib/nodes/spawn_point.gd" id="2_duvt7"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_gvo50"]
-[ext_resource type="Resource" path="res://zones/level_1/hterrain/data.hterrain" id="4_c8032"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_hyp42"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gf3aq"]
 sky_top_color = Color(0.392157, 0.627451, 0.94902, 1)
@@ -20,11 +17,6 @@ sky = SubResource("Sky_gosna")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Resource" id="Resource_k6mht"]
-script = ExtResource("4_hyp42")
-mode = 0
-textures = [[], []]
-
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_qpw7r")
 
@@ -38,21 +30,3 @@ environment = SubResource("Environment_jfkbx")
 [node name="SpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.8282, 2.29303, 0)
 script = ExtResource("2_duvt7")
-
-[node name="HTerrain" type="Node3D" parent="."]
-script = ExtResource("3_gvo50")
-_terrain_data = ExtResource("4_c8032")
-chunk_size = 32
-collision_enabled = true
-collision_layer = 1
-collision_mask = 1
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_k6mht")
-render_layers = 1
-cast_shadow = 1
-shader_params/u_ground_uv_scale = 20
-shader_params/u_depth_blending = true
-shader_params/u_triplanar = null
-shader_params/u_tile_reduction = null

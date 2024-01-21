@@ -15,7 +15,7 @@ const jump_speed:float = 5
 const mouse_sensitivity:float = 0.005
 const joystick_sensitivity:float = 0.02
 const max_camera_angle_up:float = deg_to_rad(50)
-const max_camera_angle_down:float = -deg_to_rad(30)
+const max_camera_angle_down:float = -deg_to_rad(40)
 const anim_blend:float = 0.2
 
 var camera_pivot:CameraPivot

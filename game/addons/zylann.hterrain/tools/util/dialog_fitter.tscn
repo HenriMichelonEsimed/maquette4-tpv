@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci6t3s7ddrjwm"]
-
-[ext_resource type="Script" path="res://addons/zylann.hterrain/tools/util/dialog_fitter.gd" id="1"]
-
-[node name="DialogFitter" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-mouse_filter = 2
-script = ExtResource("1")

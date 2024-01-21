@@ -1,0 +1,13 @@
+[gd_resource type="Terrain3DTextureList" load_steps=4 format=3 uid="uid://c5vmlldglbm7p"]
+
+[ext_resource type="Texture2D" path="res://assets/textures/terrain/aerial_grass_rock/aerial_grass_rock_albedo_height.dds" id="1_xqv2b"]
+[ext_resource type="Texture2D" path="res://assets/textures/terrain/aerial_grass_rock/aerial_grass_rock_normal_rough.dds" id="2_nls08"]
+
+[sub_resource type="Terrain3DTexture" id="Terrain3DTexture_ee30c"]
+albedo_texture = ExtResource("1_xqv2b")
+normal_texture = ExtResource("2_nls08")
+uv_scale = 0.2
+uv_rotation = 0.5
+
+[resource]
+textures = Array[Terrain3DTexture]([SubResource("Terrain3DTexture_ee30c")])
