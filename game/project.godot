@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Maquette 4 - Mobile"
-run/main_scene="res://scenes/main.tscn"
+config/name="Forcal"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -46,6 +46,7 @@ import/fbx/enabled=false
 
 [gui]
 
+theme/custom="res://assets/styles/theme.tres"
 theme/custom_font="res://assets/fonts/Goudy Mediaeval Regular.ttf"
 
 [input]

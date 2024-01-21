@@ -3,7 +3,6 @@ extends Node3D
 var zones:ZonesManager = ZonesManager.new()
 
 func _ready():
-	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, true)
 	GameState.player = $Player
 	GameState.ui = $MainUI
 	TranslationServer.set_locale(GameState.settings.lang)

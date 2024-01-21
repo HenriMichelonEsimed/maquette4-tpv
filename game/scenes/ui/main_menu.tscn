@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://ynjit0se6f3q"]
+
+[ext_resource type="Script" path="res://lib/ui/main_menu.gd" id="1_7smn2"]
+[ext_resource type="Texture2D" uid="uid://6s35ikvypb2r" path="res://assets/textures/menu_background.png" id="2_46dsb"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7smn2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_46dsb")
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -62.0
+offset_right = 35.0
+offset_bottom = 62.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonContinue" type="Button" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Continue"
+
+[node name="ButtonNew" type="Button" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "New game"
+
+[node name="ButtonSettings" type="Button" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+disabled = true
+text = "Settings"
+
+[node name="ButtonQuit" type="Button" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[connection signal="pressed" from="Menu/ButtonContinue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="Menu/ButtonNew" to="." method="_on_button_new_pressed"]
+[connection signal="pressed" from="Menu/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="Menu/ButtonQuit" to="." method="_on_button_quit_pressed"]

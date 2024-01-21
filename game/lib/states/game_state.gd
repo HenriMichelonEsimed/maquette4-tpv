@@ -52,8 +52,8 @@ func save_game(savegame = null):
 	StateSaver.set_path(savegame)
 	player_state.position = player.position
 	player_state.rotation = player.rotation
-	_save_item(CurrentItemManager.ItemSlot.SLOT_RIGHT_HAND)
-	_save_item(CurrentItemManager.ItemSlot.SLOT_LEFT_HAND)
+	_save_item(Item.ItemSlot.SLOT_RIGHT_HAND)
+	_save_item(Item.ItemSlot.SLOT_LEFT_HAND)
 	StateSaver.saveState(player_state)
 	StateSaver.saveState(camera)
 	StateSaver.saveState(InventoryState.new(inventory))

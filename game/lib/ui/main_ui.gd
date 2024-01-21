@@ -10,4 +10,5 @@ func _input(_event):
 		_on_quit_pressed()
 
 func _on_quit_pressed():
+	GameState.save_game()
 	get_tree().quit()

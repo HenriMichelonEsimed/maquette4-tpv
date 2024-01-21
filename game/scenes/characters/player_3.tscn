@@ -172,15 +172,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_m8p3y")
 surface_material_override/1 = SubResource("StandardMaterial3D_gu8ph")
 
 [node name="RightHandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="8"]
-transform = Transform3D(-0.940574, -0.009766, 0.339447, 0.113681, -0.950969, 0.287638, 0.319995, 0.309133, 0.895567, -22.2674, 88.2379, -1.22702)
+transform = Transform3D(-0.940574, -0.00976515, 0.339448, 0.113681, -0.950968, 0.28764, 0.319996, 0.309136, 0.895566, -22.2674, 88.2379, -1.22693)
 bone_name = "hand_r"
 bone_idx = 43
 
 [node name="AttachmentPoint" type="Node3D" parent="Armature/Skeleton3D/RightHandAttachment" index="0"]
-transform = Transform3D(0.0201434, 0.999549, 0.0221626, -0.147273, 0.0248918, -0.98878, -0.988889, 0.0166534, 0.147708, -2.75632, 8.44035, 1.77237)
+transform = Transform3D(0.0201434, 0.999549, 0.0221626, -0.147273, 0.0248918, -0.98878, -0.988889, 0.0166534, 0.147708, -3.37993, 7.8379, 0.027071)
 
 [node name="LeftHandAttachment" type="BoneAttachment3D" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.988767, 0.102439, -0.10884, -0.132264, -0.938843, 0.317932, -0.0696155, 0.328757, 0.941845, 21.9874, 89.6131, -0.156729)
+transform = Transform3D(-0.988766, 0.102439, -0.108843, -0.132265, -0.938842, 0.317933, -0.0696179, 0.328757, 0.941845, 21.9874, 89.6131, -0.156692)
 bone_name = "hand_l"
 bone_idx = 22
 

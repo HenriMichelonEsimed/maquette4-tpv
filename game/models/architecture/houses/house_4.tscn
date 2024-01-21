@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dqchsgvqiae5q"]
+[gd_scene load_steps=39 format=3 uid="uid://dqchsgvqiae5q"]
 
 [ext_resource type="Material" uid="uid://curqdhhdqldg8" path="res://assets/materials/architecture/Planks023B.res" id="1_jo763"]
 [ext_resource type="Material" uid="uid://dq3diy2x030b" path="res://assets/materials/architecture/WoodSiding011.res" id="2_q7v6l"]
@@ -28,6 +28,15 @@ data = PackedVector3Array(-0.5, 2.7815, -0.0625, -3, 4.05, -0.0625, -1.3083, 2.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5hf0o"]
 size = Vector3(8.02008, 0.422119, 8.16174)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e20em"]
+size = Vector3(4.5415, 1.35883, 0.294922)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k37tc"]
+size = Vector3(0.252991, 1.28857, 1.74051)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ivt18"]
+size = Vector3(0.299072, 1.37195, 2.0119)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_366vb"]
 size = Vector3(3.71216, 0.433838, 0.202332)
@@ -444,6 +453,18 @@ shape = SubResource("ConcavePolygonShape3D_v7xhi")
 [node name="Floor" type="CollisionShape3D" parent="Roofs"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01799, -0.132968, 0.08339)
 shape = SubResource("BoxShape3D_5hf0o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Roofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99292, 0.327301, 4.08781)
+shape = SubResource("BoxShape3D_e20em")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Roofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.11832, 0.345459, 3.08089)
+shape = SubResource("BoxShape3D_k37tc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Roofs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.08754, 0.324646, 3.22507)
+shape = SubResource("BoxShape3D_ivt18")
 
 [node name="Stairs" type="StaticBody3D" parent="." groups=["stairs"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.0444002, 2)

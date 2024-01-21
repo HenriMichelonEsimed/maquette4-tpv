@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://clr5j1ag0cu53"]
+[gd_scene load_steps=8 format=3 uid="uid://clr5j1ag0cu53"]
 
 [ext_resource type="Script" path="res://lib/player.gd" id="1_uojmw"]
 [ext_resource type="Script" path="res://lib/player_interactions.gd" id="4_rvpbv"]
@@ -16,8 +16,6 @@ radius = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mgu6x"]
 radius = 0.2
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_mu1um"]
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3
@@ -53,12 +51,5 @@ disabled = true
 [node name="CameraFPV" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0177231, 1.49, -0.306934)
 shape = SubResource("SphereShape3D_mgu6x")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CameraTopDown" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 3)
-shape = SubResource("SphereShape3D_mu1um")
-disabled = true
 
 [connection signal="timeout" from="TimerUse" to="." method="_on_timer_use_timeout"]

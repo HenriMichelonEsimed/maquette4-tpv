@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://08mjxh8sadly"]
 
-[ext_resource type="Material" uid="uid://oy0hs84vtoji" path="res://assets/materials/props/Trim_Props.material" id="1_086qc"]
+[ext_resource type="Material" uid="uid://oy0hs84vtoji" path="res://models/HouseAndPropsPack/Material/Trim_Props.material" id="1_086qc"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_h03t6"]
 _surfaces = [{
@@ -35,11 +35,9 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_h03t6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ux1e"]
-size = Vector3(2.01018, 1.09328, 0.479833)
+size = Vector3(2.01018, 1.09328, 0.713427)
 
 [node name="Props_Shelf_8" type="StaticBody3D"]
-collision_layer = 2
-collision_mask = 3
 
 [node name="Props_Shelf_8" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520251, 0)
@@ -47,5 +45,5 @@ mesh = SubResource("ArrayMesh_i4wsv")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.526553, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.526553, 0.116797)
 shape = SubResource("BoxShape3D_7ux1e")
