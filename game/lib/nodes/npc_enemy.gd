@@ -1,13 +1,4 @@
-class_name EnemyCharacter extends CharacterBody3D
-
-#region Anims
-const ANIM_IDLE = "idle"
-const ANIM_WALK = "walk"
-const ANIM_RUN = "run"
-const ANIM_ATTACK = "attack"
-const ANIM_DIE = "die"
-const ANIM_HIT = "hit"
-#endregion
+class_name NPCEnemy extends NPC
 
 #region StateMachine
 enum States {
@@ -87,30 +78,19 @@ var states:Dictionary = {
 #endregion
 
 #region Exports
-@export var label:String = "Enemy"
 @export var hear_distance:float = 8
 @export var attack_distance:float = 0.8
-@export var height:float = 0.0
 #endregion
 
 #region Nodes
 @onready var weapon:ItemWeapon = $RootNode/Skeleton3D/WeaponAttachement/Weapon
-@onready var hit_points_roll:DicesRoll = $HitPoints
 @onready var walking_speed_roll:DicesRoll = $WalkingSpeed
 @onready var running_speed_roll:DicesRoll = $RunningSpeed
 @onready var detection_distance_roll:DicesRoll = $DetectionDistance
 @onready var help_distance_roll:DicesRoll = $HelpDistance
-@onready var collision_shape:CollisionShape3D = $CollisionShape3D
-@onready var anim:AnimationPlayer = $AnimationPlayer
 #endregion
 
 #region Properties
-var state:StateMachine = StateMachine.new(self, states, STATES_NAMES)
-# enemy info label & HP display
-var player_in_info_area:bool = false
-var label_info:Label = Label.new()
-var icon_info:TextureRect = TextureRect.new()
-var progress_hp:ProgressBar = ProgressBar.new()
 # attack & weapon speed cooldown timer
 var attack_allowed:bool = false
 var attack_cooldown:bool = false
@@ -119,15 +99,8 @@ var timer_attack_cooldown:Timer = Timer.new()
 var raycast_detection:RayCast3D = RayCast3D.new()
 # XP gain
 var xp:int
-# current HP
-var hit_points:int = 100
-# movements speed
-var walking_speed:float = 0.5
-var running_speed:float = 1.0
 # player detection distance (*2.0 for help call)
 var detection_distance:float = 10
-# distance info label & HP are displayed
-var info_distance:float = 25
 # distance we hear hel calls
 var help_distance:float = 15
 # Gondor call for help !
@@ -136,8 +109,6 @@ var help_called:bool = false
 var attack_animation_scale:float
 # rotation animation when idle
 var idle_rotation_tween:Tween
-# player distance from node
-var player_distance:float = 0.0
 # last player detection position
 var detected_position:Vector3 = Vector3.ZERO
 # blocked, trying to escape using a pre defined path
@@ -171,52 +142,33 @@ var slide_angle:float
 #endregion
 
 func _ready():
+	super._ready()
+	state = StateMachine.new(self, states, STATES_NAMES)
 	weapon.disable()
 	weapon.use_area.set_collision_mask_value(Consts.LAYER_PLAYER, true)
-	weapon.use_area.set_collision_mask_value(Consts.LAYER_ENEMY, false)
-	connect("input_event", _on_input_event)
-	hit_points = hit_points_roll.roll()
+	weapon.use_area.set_collision_mask_value(Consts.LAYER_NPC, false)
 	walking_speed = walking_speed_roll.roll()
 	running_speed = running_speed_roll.roll()
 	detection_distance = detection_distance_roll.roll()
 	help_distance = help_distance_roll.roll()
 	xp = hit_points
-	set_collision_layer_value(Consts.LAYER_ENEMY, true)
+	set_collision_mask_value(Consts.LAYER_WALLS, true)
+	set_collision_layer_value(Consts.LAYER_NPC, true)
 	attack_animation_scale = GameMechanics.anim_scale(weapon.speed)
-	if (height == 0) and (collision_shape.shape is CylinderShape3D):
-		height = collision_shape.shape.height
 	raycast_detection.position.y = height
 	raycast_detection.target_position = Vector3(0.0, 0.0, -detection_distance)
+	raycast_detection.set_collision_mask_value(Consts.LAYER_WALLS, true)
 	add_child(raycast_detection)
-	label_info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label_info.visible = false
-	get_tree().root.call_deferred("add_child", label_info)
-	icon_info.visible = false
-	icon_info.scale = Vector2(0.5, 0.5)
-	Tools.set_shortcut_icon(icon_info, Tools.SHORTCUT_INFO)
-	get_tree().root.call_deferred("add_child", icon_info)
-	progress_hp.max_value = hit_points
-	progress_hp.value = hit_points
-	progress_hp.show_percentage = false
-	progress_hp.size.x = 50
-	progress_hp.modulate = Color.RED
-	get_tree().root.call_deferred("add_child", progress_hp)
 	timer_attack_cooldown.process_callback = Timer.TIMER_PROCESS_PHYSICS
 	timer_attack_cooldown.one_shot = true
 	timer_attack_cooldown.wait_time = GameMechanics.attack_cooldown(weapon.speed)
 	timer_attack_cooldown.connect("timeout", _on_timer_attack_timeout)
 	add_child(timer_attack_cooldown)
-	_update_info()
-	label_info.text = "%s" % label
 	if (weapon.use_area != null):
 		weapon.use_area.connect("body_entered", _on_item_hit)
 	NotificationManager.connect("new_hit", _on_new_hit)
 	NotificationManager.connect("node_call_for_help", _on_call_for_help)
 	if (randf() < 0.5): escape_direction = -1
-	GameState.player.connect("moving", _on_player_moving)
-
-func _physics_process(delta):
-	state.execute(delta)
 
 #region Setvar Block
 func setvar_player_detected(_delta):
@@ -242,7 +194,7 @@ func condition_player_in_hearing_distance(_delta):
 	return StateMachine.Result.CONTINUE
 
 func condition_getaround_enemy(_delta):
-	if player_hidden and is_colliding and (last_collider is EnemyCharacter) and (player_detected):
+	if player_hidden and is_colliding and (last_collider is NPCEnemy) and (player_detected):
 		if (getaround_count < getaround_count_trigger):
 			detected_position = last_collider.position
 			detected_position.x += escape_direction * randf() * getaround_count
@@ -256,11 +208,7 @@ func condition_getaround_enemy(_delta):
 func condition_preconditions(_delta) -> StateMachine.Result:
 	if (condition_death(_delta) == StateMachine.Result.STOP): return StateMachine.Result.STOP
 	if (condition_player_dead(_delta) == StateMachine.Result.STOP): return StateMachine.Result.STOP
-	player_distance = position.distance_to(GameState.player.position)
-	# update info label content 
-	player_in_info_area = player_distance < info_distance
-	_update_label_info_position()
-	return StateMachine.Result.CONTINUE
+	return super.condition_preconditions(_delta)
 
 func condition_death(_delta) -> StateMachine.Result:
 	if (hit_points <= 0):
@@ -387,8 +335,7 @@ func condition_is_blocked(_delta) -> StateMachine.Result:
 
 #region Actions Block
 func action_start(_delta):
-	anim.play(ANIM_IDLE)
-	anim.seek(randf()*10.0)
+	super.action_start(_delta)
 	state.change_state(States.IDLE, "start")
 
 func action_attack_player(_delta) -> StateMachine.Result:
@@ -464,9 +411,6 @@ func action_move_to_escape_position(_delta):
 
 #region Private Methods
 
-func _to_string():
-	return label
-
 func _idle_rotation(angle, time):
 	if ((idle_rotation_tween == null) or (not idle_rotation_tween.is_valid())) and (randf() < 0.5):
 		idle_rotation_tween = get_tree().create_tween()
@@ -490,43 +434,13 @@ func _check_stairs():
 			if collider.is_in_group("stairs"):
 				velocity.y = 5
 
-func _update_info():
-	if (label_info == null): return
-	progress_hp.value = hit_points
-	_update_label_info_position()
-
-func _update_label_info_position():
-	if (label_info == null): return
-	label_info.visible = player_in_info_area and GameState.camera.size < 30
-	progress_hp.visible = label_info.visible
-	#icon_info.visible = label_info.visible
-	if (label_info.visible):
-		var pos:Vector3 = position
-		pos.y += height
-		var pos2d:Vector2 = get_viewport().get_camera_3d().unproject_position(pos)
-		progress_hp.position = pos2d
-		progress_hp.position.x -= progress_hp.size.x / 2
-		progress_hp.position.y -= progress_hp.size.y/2
-		label_info.position = pos2d
-		label_info.position.x -= label_info.size.x / 2
-		label_info.position.y -= label_info.size.y + progress_hp.size.y
-		label_info.add_theme_font_size_override("font_size", 14 - GameState.camera.size / 10)
-		icon_info.position.x = label_info.position.x + label_info.size.x + 1
-		icon_info.position.y = label_info.position.y
-
 func hit(hit_by:ItemWeapon):
-	var damage_points = min(hit_by.damages_roll.roll(), hit_points)
-	hit_points -= damage_points
-	_update_info()
+	super.hit(hit_by)
 	look_at(GameState.player.position)
-	var pos = label_info.position
-	pos.x += label_info.size.x / 2
 	velocity = Vector3.ZERO
-	NotificationManager.hit(self, hit_by, damage_points)
 	if (hit_points < (progress_hp.max_value * 0.25)) and (not help_called) and (randf() < 0.25):
 		help_called = true
 		NotificationManager.call_for_help(self)
-	anim.play(ANIM_HIT if hit_points > 0 else ANIM_DIE)
 	is_blocked_count = 0
 
 func _on_new_hit(target:Node3D, _weapon:ItemWeapon, _damage_points:int, positive:bool):
@@ -537,7 +451,7 @@ func _on_new_hit(target:Node3D, _weapon:ItemWeapon, _damage_points:int, positive
 			heard_hit = true
 
 func _on_call_for_help(sender:Node3D):
-	if (sender is EnemyCharacter) and (sender != self) and (position.distance_to(sender.position) < (detection_distance * 2.0)):
+	if (sender is NPCEnemy) and (sender != self) and (position.distance_to(sender.position) < (detection_distance * 2.0)):
 		if (randf() < 0.2):
 			getaround_count = 0
 			detected_position = sender.position
@@ -551,15 +465,6 @@ func _on_item_hit(node:Node3D):
 		attack_allowed = false
 		if (node is Player):
 			node.hit(weapon)
-
-func _on_input_event(_camera, event, _position, _normal, _shape_idx):
-	if (event is InputEventMouseButton) and (event.button_index == MOUSE_BUTTON_MIDDLE) and not(event.pressed):
-		Tools.load_dialog(self, Tools.DIALOG_ENEMY_INFO, GameState.resume_game).open(self)
-
-func _on_animation_tree_animation_finished(anim_name):
-	if (anim_name == "undead/react_death_backward_1"):
-		$AnimationPlayer.queue_free()
-		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_player_moving():
 	if (player_detected) :

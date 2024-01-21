@@ -54,9 +54,9 @@ func _spawn_player(spawnpoint_key:String):
 	_last_spawnpoint = spawnpoint_key
 
 func _spawn_enemies():
-	for node:EnemySpawnPoint in GameState.current_zone.find_children("*", "EnemySpawnPoint", false, true):
+	for node:NPCSpawnPoint in GameState.current_zone.find_children("*", "NPCSpawnPoint", false, true):
 		var enemy_scene = Tools.load_enemy(node.char_key)
-		var spawned:Array[EnemyCharacter] = []
+		var spawned:Array[NPC] = []
 		var curve = node.spawn_path.curve
 		var curve_length = curve.get_baked_length()
 		var count = node.count
@@ -65,7 +65,7 @@ func _spawn_enemies():
 		for i in range(count):
 			_spawn_enemy(node, enemy_scene, node.spawn_path, curve_length, spawned)
 
-func _spawn_enemy(node:EnemySpawnPoint, enemy_scene:PackedScene, path:Path3D, curve_length:float, previous_spawns:Array[EnemyCharacter]):
+func _spawn_enemy(node:NPCSpawnPoint, enemy_scene:PackedScene, path:Path3D, curve_length:float, previous_spawns:Array[NPC]):
 	var enemy = enemy_scene.instantiate()
 	var offset = randf()*curve_length
 	enemy.position = path.curve.sample_baked(offset)

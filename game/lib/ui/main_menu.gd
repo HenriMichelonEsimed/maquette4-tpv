@@ -13,13 +13,15 @@ func _ready():
 	get_tree().paused = false
 	GameState.game_started = false
 	GameState.prepare_game(false)
-	Tools.preload_zone(GameState.player_state.zone_name)
 	Input.connect("joy_connection_changed", _on_joypad_connection_changed)
 	if (StateSaver.get_savegames().is_empty()):
 		button_continue.disabled = true
 		button_new.grab_focus()
 	else:
 		button_continue.grab_focus()
+	#Tools.preload_zone(GameState.player_state.zone_name)
+	GameState.prepare_game(true)
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 func _on_resized():
 	if (menu != null):

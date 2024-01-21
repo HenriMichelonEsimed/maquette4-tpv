@@ -136,11 +136,15 @@ func handle_item(slot:Item.ItemSlot):
 	if (slot == Item.ItemSlot.SLOT_RIGHT_HAND and GameState.current_item[slot] is ItemWeapon):
 		anim_group = GameState.current_item[slot].anim + "/"
 		attack_speed_scale = GameMechanics.anim_scale(GameState.current_item[slot].speed)
+		if (GameState.current_item[slot].use_area != null):
+			GameState.current_item[slot].use_area.connect("body_entered", _on_item_hit)
 
 func unhandle_item(slot:Item.ItemSlot):
 	item_attachement[slot].remove_child(GameState.current_item[slot])
 	if (slot == Item.ItemSlot.SLOT_RIGHT_HAND):
 		anim_group = Consts.ANIM_GROUP_PLAYER + "/"
+		if (GameState.current_item[slot].use_area != null):
+			GameState.current_item[slot].use_area.disconnect("body_entered", _on_item_hit)
 	
 func look_at_node(node:Node3D):
 	var pos:Vector3 = node.global_position
@@ -173,3 +177,9 @@ func set_pos():
 
 func _on_timer_use_timeout():
 	attack_cooldown = false
+
+func _on_item_hit(node:Node3D):
+	if (hit_allowed):
+		hit_allowed = false
+		if (node is NPC):
+			node.hit(GameState.current_item[Item.ItemSlot.SLOT_RIGHT_HAND])
