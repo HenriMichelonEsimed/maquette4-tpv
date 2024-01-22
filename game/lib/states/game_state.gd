@@ -80,7 +80,7 @@ func _save_item(slot:Item.ItemSlot):
 		player_state.current_item_type[slot] = current_item[slot].type
 		player_state.current_item_key[slot] = current_item[slot].key
 	else:
-		player_state.current_item_typ[slot] = Item.ItemType.ITEM_UNKNOWN
+		player_state.current_item_type[slot] = Item.ItemType.ITEM_UNKNOWN
 
 func _load_item(slot:Item.ItemSlot):
 	if (player_state.current_item_type[slot] != Item.ItemType.ITEM_UNKNOWN):

@@ -54,7 +54,7 @@ func _ready():
 	get_tree().root.call_deferred("add_child", progress_hp)
 	_update_info()
 	label_info.text = "%s" % label
-	GameState.player.connect("moving", _on_player_moving)
+	#GameState.player.connect("moving", _on_player_moving)
 
 func _physics_process(delta):
 	state.execute(delta)

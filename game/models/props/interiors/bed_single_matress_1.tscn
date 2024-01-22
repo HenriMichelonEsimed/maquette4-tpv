@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://cre8h3tm2728w"]
 
-[ext_resource type="Material" uid="uid://oy0hs84vtoji" path="res://models/HouseAndPropsPack/Material/Trim_Props.material" id="1_8pcvb"]
 [ext_resource type="PackedScene" uid="uid://clmg3s6cesjub" path="res://models/props/interiors/bed_single_matress_1.glb" id="1_bw8ke"]
 [ext_resource type="Material" uid="uid://k6kpmjeml12n" path="res://assets/materials/props/pillow_1.tres" id="1_h0xx2"]
 [ext_resource type="Material" uid="uid://bla2nillinx00" path="res://assets/materials/props/Fabric_woven_pattern/Fabric_woven_pattern.tres" id="2_72uhp"]
+[ext_resource type="Material" uid="uid://cfpk0j6jxac1k" path="res://assets/materials/props/wood_table_worn/wood_table_worn.res" id="3_xoq78"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vswpa"]
 size = Vector3(1.7207, 0.5, 2.66125)
@@ -12,7 +12,7 @@ size = Vector3(1.7207, 0.5, 2.66125)
 
 [node name="Bed_Single_low" parent="." index="0"]
 surface_material_override/0 = ExtResource("1_h0xx2")
-surface_material_override/1 = ExtResource("1_8pcvb")
+surface_material_override/1 = ExtResource("3_xoq78")
 
 [node name="Bed_Single_Blanket_low" parent="." index="1"]
 surface_material_override/0 = ExtResource("2_72uhp")
