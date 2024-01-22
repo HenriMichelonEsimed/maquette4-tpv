@@ -1,18 +1,19 @@
-[gd_scene load_steps=39 format=3 uid="uid://dqchsgvqiae5q"]
+[gd_scene load_steps=40 format=3 uid="uid://dqchsgvqiae5q"]
 
-[ext_resource type="Material" uid="uid://curqdhhdqldg8" path="res://assets/materials/architecture/Planks023B.res" id="1_jo763"]
-[ext_resource type="Material" uid="uid://dq3diy2x030b" path="res://assets/materials/architecture/WoodSiding011.res" id="2_q7v6l"]
-[ext_resource type="Material" uid="uid://temlvilf84e7" path="res://assets/materials/architecture/Planks037A.res" id="2_uem77"]
-[ext_resource type="Material" uid="uid://i10f1jw4bpnc" path="res://assets/materials/architecture/Planks024C.res" id="3_j3uvp"]
+[ext_resource type="Material" uid="uid://curqdhhdqldg8" path="res://assets/materials/architecture/Planks023B/Planks023B.res" id="1_jo763"]
+[ext_resource type="Material" uid="uid://dq3diy2x030b" path="res://assets/materials/architecture/WoodSiding011/WoodSiding011.res" id="2_q7v6l"]
+[ext_resource type="Material" uid="uid://temlvilf84e7" path="res://assets/materials/architecture/Planks037A/Planks037A.res" id="2_uem77"]
+[ext_resource type="Material" uid="uid://i10f1jw4bpnc" path="res://assets/materials/architecture/Planks024C/Planks024C.res" id="3_j3uvp"]
+[ext_resource type="Material" uid="uid://cyv3nu2mqr1xj" path="res://assets/materials/architecture/yellow_plaster_02/yellow_plaster_02.res" id="5_d42t3"]
 [ext_resource type="PackedScene" uid="uid://cre8h3tm2728w" path="res://models/props/interiors/bed_single_matress_1.tscn" id="6_0jc2k"]
 [ext_resource type="Material" uid="uid://c8e1dkq4vy1v1" path="res://models/HouseAndPropsPack/Material/Glass.material" id="6_qifjg"]
 [ext_resource type="PackedScene" uid="uid://bgrlpdff5fa6f" path="res://models/props/interiors/props_table_square_6.tscn" id="7_8xm4n"]
-[ext_resource type="PackedScene" uid="uid://brkyr72h4sr45" path="res://models/props/interiors/props_stool_1.tscn" id="8_6drl2"]
-[ext_resource type="PackedScene" uid="uid://nw1j8fieurje" path="res://models/props/interiors/props_chair_1.tscn" id="9_6ueri"]
-[ext_resource type="PackedScene" uid="uid://bg0r0oavteps7" path="res://models/props/interiors/props_bench_3.tscn" id="10_ajpqr"]
-[ext_resource type="PackedScene" uid="uid://vl2uhbpvfq5d" path="res://models/props/interiors/plate_1.tscn" id="11_o46kg"]
-[ext_resource type="PackedScene" uid="uid://csg41l58oc5u6" path="res://models/props/interiors/candle_stick_1.tscn" id="12_72n6m"]
+[ext_resource type="PackedScene" path="res://models/props/interiors/props_stool_1.tscn" id="8_6drl2"]
+[ext_resource type="PackedScene" path="res://models/props/interiors/props_chair_1.tscn" id="9_6ueri"]
+[ext_resource type="PackedScene" path="res://models/props/interiors/props_bench_3.tscn" id="10_ajpqr"]
+[ext_resource type="PackedScene" path="res://models/props/interiors/plate_1.tscn" id="11_o46kg"]
 [ext_resource type="PackedScene" uid="uid://08mjxh8sadly" path="res://models/props/interiors/props_shelf_8.tscn" id="13_lu578"]
+[ext_resource type="PackedScene" uid="uid://blyw75cvsvum5" path="res://models/props/interiors/candle_holder_1.scn" id="13_u6ynj"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_hrwxg"]
 data = PackedVector3Array(-0.2222, -0.3944, 0.2222, -0.2222, 4.2814, -0.2222, -0.2222, 3.9391, 0.2222, -0.2222, -0.3944, 0.2222, -0.2222, -0.3944, -0.2222, -0.2222, 4.2814, -0.2222, -0.2222, -0.3944, -0.2222, 0.2222, 4.2814, -0.2222, -0.2222, 4.2814, -0.2222, -0.2222, -0.3944, -0.2222, 0.2222, -0.3944, -0.2222, 0.2222, 4.2814, -0.2222, 0.2222, -0.3944, -0.2222, 0.2222, 3.9391, 0.2222, 0.2222, 4.2814, -0.2222, 0.2222, -0.3944, -0.2222, 0.2222, -0.3944, 0.2222, 0.2222, 3.9391, 0.2222, 0.2222, -0.3944, 0.2222, -0.2222, 3.9391, 0.2222, 0.2222, 3.9391, 0.2222, 0.2222, -0.3944, 0.2222, -0.2222, -0.3944, 0.2222, -0.2222, 3.9391, 0.2222, -8.2222, -0.3944, 0.2222, -8.2222, 4.2814, -0.2222, -8.2222, 3.9391, 0.2222, -8.2222, -0.3944, 0.2222, -8.2222, -0.3944, -0.2222, -8.2222, 4.2814, -0.2222, -8.2222, -0.3944, -0.2222, -7.7778, 4.2814, -0.2222, -8.2222, 4.2814, -0.2222, -8.2222, -0.3944, -0.2222, -7.7778, -0.3944, -0.2222, -7.7778, 4.2814, -0.2222, -7.7778, -0.3944, -0.2222, -7.7778, 3.9391, 0.2222, -7.7778, 4.2814, -0.2222, -7.7778, -0.3944, -0.2222, -7.7778, -0.3944, 0.2222, -7.7778, 3.9391, 0.2222, -7.7778, -0.3944, 0.2222, -8.2222, 3.9391, 0.2222, -7.7778, 3.9391, 0.2222, -7.7778, -0.3944, 0.2222, -8.2222, -0.3944, 0.2222, -8.2222, 3.9391, 0.2222, 0.2222, -0.3944, -6.2222, 0.2222, 4.2814, -5.7778, 0.2222, 3.9391, -6.2222, 0.2222, -0.3944, -6.2222, 0.2222, -0.3944, -5.7778, 0.2222, 4.2814, -5.7778, 0.2222, -0.3944, -5.7778, -0.2222, 4.2814, -5.7778, 0.2222, 4.2814, -5.7778, 0.2222, -0.3944, -5.7778, -0.2222, -0.3944, -5.7778, -0.2222, 4.2814, -5.7778, -0.2222, -0.3944, -5.7778, -0.2222, 3.9391, -6.2222, -0.2222, 4.2814, -5.7778, -0.2222, -0.3944, -5.7778, -0.2222, -0.3944, -6.2222, -0.2222, 3.9391, -6.2222, -0.2222, -0.3944, -6.2222, 0.2222, 3.9391, -6.2222, -0.2222, 3.9391, -6.2222, -0.2222, -0.3944, -6.2222, 0.2222, -0.3944, -6.2222, 0.2222, 3.9391, -6.2222, -7.7778, -0.3944, -6.2222, -7.7778, 4.2814, -5.7778, -7.7778, 3.9391, -6.2222, -7.7778, -0.3944, -6.2222, -7.7778, -0.3944, -5.7778, -7.7778, 4.2814, -5.7778, -7.7778, -0.3944, -5.7778, -8.2222, 4.2814, -5.7778, -7.7778, 4.2814, -5.7778, -7.7778, -0.3944, -5.7778, -8.2222, -0.3944, -5.7778, -8.2222, 4.2814, -5.7778, -8.2222, -0.3944, -5.7778, -8.2222, 3.9391, -6.2222, -8.2222, 4.2814, -5.7778, -8.2222, -0.3944, -5.7778, -8.2222, -0.3944, -6.2222, -8.2222, 3.9391, -6.2222, -8.2222, -0.3944, -6.2222, -7.7778, 3.9391, -6.2222, -8.2222, 3.9391, -6.2222, -8.2222, -0.3944, -6.2222, -7.7778, -0.3944, -6.2222, -7.7778, 3.9391, -6.2222)
@@ -299,7 +300,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray(7, 0, 6, 0, 8, 0, 7, 0, 2, 0, 6, 0, 9, 0, 3, 0, 7, 0, 9, 0, 1, 0, 3, 0, 8, 0, 5, 0, 10, 0, 8, 0, 6, 0, 5, 0, 10, 0, 0, 0, 9, 0, 10, 0, 4, 0, 0, 0, 18, 0, 17, 0, 13, 0, 18, 0, 19, 0, 17, 0, 20, 0, 14, 0, 11, 0, 20, 0, 18, 0, 14, 0, 19, 0, 16, 0, 17, 0, 19, 0, 21, 0, 16, 0, 21, 0, 12, 0, 15, 0, 21, 0, 20, 0, 12, 0),
-"material": ExtResource("1_jo763"),
+"material": ExtResource("3_j3uvp"),
 "name": "WoodDeck",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -363,7 +364,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 81,
 "index_data": PackedByteArray(9, 0, 17, 0, 11, 0, 7, 0, 5, 0, 1, 0, 7, 0, 10, 0, 5, 0, 11, 0, 8, 0, 9, 0, 11, 0, 4, 0, 8, 0, 6, 0, 8, 0, 3, 0, 6, 0, 10, 0, 8, 0, 15, 0, 12, 0, 18, 0, 15, 0, 13, 0, 12, 0, 12, 0, 16, 0, 18, 0, 27, 0, 19, 0, 29, 0, 27, 0, 22, 0, 19, 0, 27, 0, 25, 0, 21, 0, 27, 0, 30, 0, 25, 0, 28, 0, 31, 0, 24, 0, 31, 0, 29, 0, 20, 0, 31, 0, 28, 0, 29, 0, 26, 0, 28, 0, 23, 0, 26, 0, 30, 0, 28, 0, 34, 0, 33, 0, 35, 0, 34, 0, 32, 0, 33, 0, 37, 0, 40, 0, 36, 0, 40, 0, 39, 0, 38, 0, 40, 0, 37, 0, 39, 0, 0, 0, 14, 0, 16, 0, 7, 0, 17, 0, 9, 0, 7, 0, 2, 0, 17, 0),
-"material": ExtResource("2_q7v6l"),
+"material": ExtResource("5_d42t3"),
 "name": "Wall_Outer",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -536,12 +537,6 @@ transform = Transform3D(0.969192, 0, 0.246306, 0, 1, 0, -0.246306, 0, 0.969192, 
 [node name="plate_1" parent="Props" instance=ExtResource("11_o46kg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.97539, 1.13074, -1.62821)
 
-[node name="candle_stick_1" parent="Props" instance=ExtResource("12_72n6m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99208, 1.14229, -1.94787)
-
-[node name="candle_stick_2" parent="Props" instance=ExtResource("12_72n6m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91394, 0.6902, -3.35446)
-
 [node name="Props_Shelf_8" parent="Props" instance=ExtResource("13_lu578")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22886, 0.0944002, 1.7338)
 
@@ -553,3 +548,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73651, 1.16759, 1.63529)
 
 [node name="plate_4" parent="Props" instance=ExtResource("11_o46kg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1025, 1.16759, 1.6433)
+
+[node name="candle_holder_1" parent="." instance=ExtResource("13_u6ynj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.91678, 0.683442, -3.29622)
+
+[node name="candle_holder_2" parent="." instance=ExtResource("13_u6ynj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.21329, 1.14229, -1.75019)
