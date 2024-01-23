@@ -28,9 +28,9 @@ shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
 shader_parameter/clouds_speed = 3.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 1.0
+shader_parameter/clouds_cutoff = 0.3
 shader_parameter/clouds_fuzziness = 0.5
-shader_parameter/clouds_weight = 0.0
+shader_parameter/clouds_weight = 0.03
 shader_parameter/clouds_blur = 0.25
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_texture = ExtResource("3_r03d3")
@@ -50,18 +50,21 @@ ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
 
-[node name="ExteriorEnvironnement" type="Node3D"]
+[node name="ExteriorEnvironnement" type="Node3D" node_paths=PackedStringArray("environment", "sun", "moon")]
 script = ExtResource("1_lsyam")
 day_time = 12.5071
 latitude = 49.86
 day_of_year = 240
 clouds_weight = 0.03
 time_scale = 0.02
+sun_base_enegry = 1.0
+environment = NodePath("WorldEnvironment")
+sun = NodePath("Sun")
+moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.754567, 0.101192, -0.648374, 0.6559, -0.0853325, 0.750009, 0.0205676, -0.991201, -0.130761, 0, 0, 0)
+transform = Transform3D(0.754567, 0.101192, -0.648374, 0.6559, -0.0853326, 0.750009, 0.0205676, -0.991201, -0.130761, 0, 0, 0)
 rotation_order = 4
-light_energy = 0.0
 shadow_enabled = true
 shadow_opacity = 0.75
 shadow_blur = 5.0
@@ -70,7 +73,6 @@ shadow_blur = 5.0
 transform = Transform3D(0.718889, -0.515814, -0.465976, 0.68836, 0.434972, 0.580482, -0.0967343, -0.738063, 0.667763, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 1, 0.6, 1)
-light_energy = 0.0
 shadow_enabled = true
 shadow_opacity = 0.25
 shadow_blur = 5.0

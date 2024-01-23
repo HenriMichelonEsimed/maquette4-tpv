@@ -13,14 +13,14 @@ func _ready():
 		CurrentItemManager.use(item, Item.ItemSlot.SLOT_RIGHT_HAND)
 	else:
 		pass
-		#CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "short_sword_1"), Item.ItemSlot.SLOT_RIGHT_HAND)
+		CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "short_sword_1"), Item.ItemSlot.SLOT_RIGHT_HAND)
 	if (GameState.current_item[Item.ItemSlot.SLOT_LEFT_HAND] != null):
 		var item = GameState.current_item[Item.ItemSlot.SLOT_LEFT_HAND]
 		GameState.current_item[Item.ItemSlot.SLOT_LEFT_HAND] = null
 		CurrentItemManager.use(item, Item.ItemSlot.SLOT_LEFT_HAND)
 	else:
 		pass
-		#CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "shield_1"), Item.ItemSlot.SLOT_LEFT_HAND)
+		CurrentItemManager.use(Tools.load_item(Item.ItemType.ITEM_WEAPONS, "shield_1"), Item.ItemSlot.SLOT_LEFT_HAND)
 	GameState.quests.start("main")
 	zones.change_zone(self, GameState.player_state.zone_name)
 	if (GameState.player_state.position != Vector3.ZERO):

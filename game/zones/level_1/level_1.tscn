@@ -1,32 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7xab8odfni8k"]
+[gd_scene load_steps=7 format=3 uid="uid://b7xab8odfni8k"]
 
 [ext_resource type="Script" path="res://lib/nodes/zone.gd" id="1_qpw7r"]
+[ext_resource type="PackedScene" uid="uid://bhhbfstyssdc6" path="res://scenes/environments/exterior.tscn" id="2_805r0"]
 [ext_resource type="Script" path="res://lib/nodes/spawn_point.gd" id="2_duvt7"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gf3aq"]
-sky_top_color = Color(0.392157, 0.627451, 0.94902, 1)
-sky_horizon_color = Color(0.648039, 0.699113, 0.770505, 1)
-ground_horizon_color = Color(0.648039, 0.699113, 0.770505, 1)
-
-[sub_resource type="Sky" id="Sky_gosna"]
-sky_material = SubResource("ProceduralSkyMaterial_gf3aq")
-
-[sub_resource type="Environment" id="Environment_jfkbx"]
-background_mode = 2
-sky = SubResource("Sky_gosna")
-tonemap_mode = 2
-glow_enabled = true
+[ext_resource type="Terrain3DStorage" uid="uid://v7xdgnel22p4" path="res://zones/level_1/terrain.res" id="4_xlr5m"]
+[ext_resource type="Terrain3DMaterial" uid="uid://dugt7jahcee34" path="res://assets/materials/terrain/exterior_1.res" id="5_y2jxk"]
+[ext_resource type="Terrain3DTextureList" uid="uid://6vgklbujuqu8" path="res://assets/textures/terrain/exterior_1.res" id="6_nrnhh"]
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_qpw7r")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.373319, 0.332615, 0.156938, 0.428657, 0.889732, -0.474732, 0.822731, -0.312639, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jfkbx")
+[node name="ExteriorEnvironnement" parent="." instance=ExtResource("2_805r0")]
 
 [node name="SpawnPoint" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.8282, 2.29303, 0)
+transform = Transform3D(-0.900857, 0, 0.434115, 0, 1, 0, -0.434115, 0, -0.900857, 10.6942, 0, 34.2445)
 script = ExtResource("2_duvt7")
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("4_xlr5m")
+material = ExtResource("5_y2jxk")
+texture_list = ExtResource("6_nrnhh")
