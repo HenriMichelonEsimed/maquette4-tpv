@@ -13,4 +13,5 @@ player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_s0g2f")]
 
-[node name="MainUI" parent="." instance=ExtResource("3_nkct4")]
+[node name="MainUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_nkct4")]
+player = NodePath("../Player")

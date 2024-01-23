@@ -39,7 +39,7 @@ script = ExtResource("4_rvpbv")
 [node name="Character" parent="." instance=ExtResource("8_vknf6")]
 
 [node name="CameraNear" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.3)
+transform = Transform3D(1, 0, 0, 0, 0.997268, 0.0738648, 0, -0.0738648, 0.997268, 0.255, 1.611, 0.4)
 shape = SubResource("SphereShape3D_5ljan")
 disabled = true
 

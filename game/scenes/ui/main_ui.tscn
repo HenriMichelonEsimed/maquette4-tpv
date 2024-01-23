@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://q6e6t2nkqepw"]
+[gd_scene load_steps=4 format=3 uid="uid://q6e6t2nkqepw"]
 
 [ext_resource type="Script" path="res://lib/ui/main_ui.gd" id="1_ieyqe"]
+[ext_resource type="Texture2D" uid="uid://11r54xetvyms" path="res://assets/textures/crosshair.svg" id="2_s157x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqyxs"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
 
 [node name="MainUI" type="Control"]
 modulate = Color(1, 1, 1, 0.501961)
@@ -22,3 +34,44 @@ offset_bottom = 20.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 24
 text = "FPS"
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelInfos" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -47.0
+offset_right = 28.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_yqyxs")
+text = "Infos"
+
+[node name="Crosshair" type="TextureRect" parent="HUD"]
+modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_s157x")
