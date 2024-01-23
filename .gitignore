@@ -2,6 +2,7 @@
 .godot/
 *.exe
 *.pck
+*.blend1
 
 # Godot-specific ignores
 .import/
