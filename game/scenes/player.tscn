@@ -9,13 +9,16 @@ radius = 0.370626
 height = 1.79497
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5ljan"]
-radius = 0.1
+margin = 0.02
+radius = 0.06
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_aqaao"]
-radius = 0.1
+margin = 0.02
+radius = 0.05
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mgu6x"]
-radius = 0.2
+margin = 0.02
+radius = 0.1
 
 [node name="Player" type="CharacterBody3D"]
 collision_layer = 3

@@ -1,21 +1,21 @@
 [gd_scene load_steps=7 format=3 uid="uid://bhhbfstyssdc6"]
 
-[ext_resource type="Script" path="res://scenes/environment/exterior.gd" id="1_lsyam"]
-[ext_resource type="Shader" path="res://assets/shaders/sky.gdshader" id="2_kngvo"]
-[ext_resource type="Texture2D" uid="uid://chhv3jnv24qqt" path="res://assets/textures/vfx/stars.png" id="3_r03d3"]
+[ext_resource type="Script" path="res://scenes/environments/exterior.gd" id="1_lsyam"]
+[ext_resource type="Shader" path="res://lib/shaders/sky.gdshader" id="2_kngvo"]
+[ext_resource type="Texture2D" uid="uid://yyhqnlds7o2k" path="res://assets/textures/stars.png" id="3_r03d3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m7wfb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a1pku"]
 shader = ExtResource("2_kngvo")
-shader_parameter/day_top_color = Color(0, 0.521569, 0.890196, 1)
-shader_parameter/day_bottom_color = Color(0.529412, 0.835294, 1, 1)
-shader_parameter/sunset_top_color = Color(0.7, 0.75, 1, 1)
-shader_parameter/sunset_bottom_color = Color(0.960784, 0.580392, 0.337255, 1)
-shader_parameter/night_top_color = Color(0, 0.0588235, 0.0862745, 1)
-shader_parameter/night_bottom_color = Color(0, 0.0705882, 0.109804, 1)
-shader_parameter/horizon_color = Color(0.701961, 0.894118, 0.988235, 1)
-shader_parameter/horizon_blur = 0.15
+shader_parameter/day_top_color = Color(0.305882, 0.662745, 1, 1)
+shader_parameter/day_bottom_color = Color(0.607843, 0.862745, 1, 1)
+shader_parameter/sunset_top_color = Color(0.866667, 0.729412, 0.705882, 1)
+shader_parameter/sunset_bottom_color = Color(0.964706, 0.584314, 0.282353, 1)
+shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
+shader_parameter/night_bottom_color = Color(0.0117647, 0, 0.160784, 1)
+shader_parameter/horizon_color = Color(0.941176, 0.988235, 1, 1)
+shader_parameter/horizon_blur = 0.05
 shader_parameter/sun_color = Color(10, 8, 1, 1)
-shader_parameter/sun_sunset_color = Color(1, 0.286275, 0.0588235, 1)
+shader_parameter/sun_sunset_color = Color(10, 0.34902, 0, 1)
 shader_parameter/sun_size = 0.2
 shader_parameter/sun_blur = 10.0
 shader_parameter/moon_color = Color(1, 0.95, 0.7, 1)
@@ -25,10 +25,10 @@ shader_parameter/clouds_edge_color = Color(0.8, 0.8, 0.98, 1)
 shader_parameter/clouds_top_color = Color(1, 1, 1, 1)
 shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
 shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
-shader_parameter/clouds_speed = 2.0
+shader_parameter/clouds_speed = 3.0
 shader_parameter/clouds_direction = 0.2
 shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_cutoff = 0.3
+shader_parameter/clouds_cutoff = 1.0
 shader_parameter/clouds_fuzziness = 0.5
 shader_parameter/clouds_weight = 0.0
 shader_parameter/clouds_blur = 0.25
@@ -36,27 +36,30 @@ shader_parameter/stars_speed = 1.0
 shader_parameter/stars_texture = ExtResource("3_r03d3")
 shader_parameter/overwritten_time = 0.0
 
-[sub_resource type="Sky" id="Sky_goad2"]
-sky_material = SubResource("ShaderMaterial_m7wfb")
+[sub_resource type="Sky" id="Sky_563lc"]
+sky_material = SubResource("ShaderMaterial_a1pku")
+process_mode = 1
 
-[sub_resource type="Environment" id="Environment_1yhrm"]
+[sub_resource type="Environment" id="Environment_sj43i"]
 background_mode = 2
-sky = SubResource("Sky_goad2")
-glow_enabled = true
-glow_intensity = 0.4
-glow_strength = 0.5
-fog_light_color = Color(0.701961, 0.733333, 0.776471, 1)
-fog_light_energy = 0.1
+sky = SubResource("Sky_563lc")
+ambient_light_source = 1
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
 
 [node name="ExteriorEnvironnement" type="Node3D"]
 script = ExtResource("1_lsyam")
-sun_base_enegry = 1.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1yhrm")
+day_time = 12.5071
+latitude = 49.86
+day_of_year = 240
+clouds_weight = 0.03
+time_scale = 0.02
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.920626, 0, -0.390445, -0.390445, -4.37114e-08, -0.920627, -1.70669e-08, 1, -4.02419e-08, 0, 0, 0)
+transform = Transform3D(0.754567, 0.101192, -0.648374, 0.6559, -0.0853325, 0.750009, 0.0205676, -0.991201, -0.130761, 0, 0, 0)
 rotation_order = 4
 light_energy = 0.0
 shadow_enabled = true
@@ -64,7 +67,7 @@ shadow_opacity = 0.75
 shadow_blur = 5.0
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.995978, 0, 0.0895896, 0.0189377, -0.977404, -0.210533, 0.0875651, 0.211383, -0.973473, 0, 0, 0)
+transform = Transform3D(0.718889, -0.515814, -0.465976, 0.68836, 0.434972, 0.580482, -0.0967343, -0.738063, 0.667763, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 1, 0.6, 1)
 light_energy = 0.0
@@ -72,3 +75,6 @@ shadow_enabled = true
 shadow_opacity = 0.25
 shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sj43i")
