@@ -4,7 +4,6 @@ signal using(is_used:bool)
 signal unlock(success:bool)
 
 @export var label:String
-@export var title:String
 @export var sound:AudioStream
 
 var save:bool
@@ -20,9 +19,6 @@ func _ready():
 	set_collision_layer_value(Consts.LAYER_USABLE, true)
 	if (label == null): 
 		label = get_path()
-	var text = find_child("Text")
-	if text != null:
-		text.text = title
 	_animation = find_child("AnimationPlayer")
 	if (_animation != null):
 		_animation.connect("animation_finished", _on_animation_finished)

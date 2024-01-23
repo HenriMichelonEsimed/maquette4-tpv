@@ -44,7 +44,7 @@ func _on_player_move():
 	if ((camera_tween == null) or (not camera_tween.is_valid())):
 		if is_colliding() and current_camera != CameraView.CAMERA_FPV:
 			if (camera.position != camera_pivot[CameraView.CAMERA_TPV_NEAR].position):
-				_change_camera(CameraView.CAMERA_TPV_NEAR)
+				_change_camera(CameraView.CAMERA_TPV_NEAR, true, false)
 		elif (camera.position != camera_pivot[current_camera].position):
 			_change_camera(current_camera)
 
@@ -59,7 +59,7 @@ func _input(event):
 
 func set_camera(view:CameraView):
 		if (current_camera == CameraView.CAMERA_FPV):
-			_on_player_change_anim(GameState.player.anim.current_animation)
+			_on_player_change_anim(GameState.player.anim.current_animation if GameState.player != null else Consts.ANIM_IDLE)
 		else:
 			_change_camera(current_camera)
 
@@ -87,7 +87,7 @@ func _on_player_change_anim(anim_name:String):
 			camera_collision[current_camera].position.z = camera_fpv_distance[3]
 		_change_camera(current_camera, false)
 
-func _change_camera(view:CameraView, change_rotation:bool = true):
+func _change_camera(view:CameraView, change_rotation:bool = true, save_state:bool = true):
 	camera_collision[view].disabled = false
 	camera_tween = get_tree().create_tween()
 	camera_tween.tween_property(
@@ -109,3 +109,5 @@ func _change_camera(view:CameraView, change_rotation:bool = true):
 		camera_fov[view], 
 		camera_change_time[view] / 2
 		).from_current()
+	if (save_state):
+		GameState.player_state.camera_view = view
