@@ -9,12 +9,12 @@ shader = ExtResource("2_kngvo")
 shader_parameter/day_top_color = Color(0.305882, 0.662745, 1, 1)
 shader_parameter/day_bottom_color = Color(0.607843, 0.862745, 1, 1)
 shader_parameter/sunset_top_color = Color(0.866667, 0.729412, 0.705882, 1)
-shader_parameter/sunset_bottom_color = Color(0.964706, 0.584314, 0.282353, 1)
+shader_parameter/sunset_bottom_color = Color(0.964706, 0.537255, 0.282353, 1)
 shader_parameter/night_top_color = Color(0.02, 0, 0.04, 1)
 shader_parameter/night_bottom_color = Color(0.0117647, 0, 0.160784, 1)
 shader_parameter/horizon_color = Color(0.941176, 0.988235, 1, 1)
 shader_parameter/horizon_blur = 0.05
-shader_parameter/sun_color = Color(10, 8, 1, 1)
+shader_parameter/sun_color = Color(1, 0.917647, 0.835294, 1)
 shader_parameter/sun_sunset_color = Color(10, 0.34902, 0, 1)
 shader_parameter/sun_size = 0.2
 shader_parameter/sun_blur = 10.0
@@ -27,14 +27,14 @@ shader_parameter/clouds_middle_color = Color(0.92, 0.92, 0.98, 1)
 shader_parameter/clouds_bottom_color = Color(0.83, 0.83, 0.94, 1)
 shader_parameter/clouds_speed = 3.0
 shader_parameter/clouds_direction = 0.2
-shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_scale = 0.5
 shader_parameter/clouds_cutoff = 0.3
 shader_parameter/clouds_fuzziness = 0.5
 shader_parameter/clouds_weight = 0.03
 shader_parameter/clouds_blur = 0.25
 shader_parameter/stars_speed = 1.0
 shader_parameter/stars_texture = ExtResource("3_r03d3")
-shader_parameter/overwritten_time = 0.0
+shader_parameter/overwritten_time = 576874.0
 
 [sub_resource type="Sky" id="Sky_563lc"]
 sky_material = SubResource("ShaderMaterial_a1pku")
@@ -43,28 +43,32 @@ process_mode = 1
 [sub_resource type="Environment" id="Environment_sj43i"]
 background_mode = 2
 sky = SubResource("Sky_563lc")
-ambient_light_source = 1
-tonemap_mode = 2
+ambient_light_source = 3
+tonemap_mode = 1
+tonemap_exposure = 0.8
 sdfgi_enabled = true
 
 [node name="ExteriorEnvironnement" type="Node3D" node_paths=PackedStringArray("environment", "sun", "moon")]
 script = ExtResource("1_lsyam")
-day_time = 12.5071
+day_time = 8.7386
 latitude = 49.86
 day_of_year = 240
 clouds_weight = 0.03
+use_day_time_for_shader = true
 time_scale = 0.02
+sun_base_enegry = 1.0
+moon_base_enegry = 1.0
 environment = NodePath("WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.754567, 0.101192, -0.648374, 0.6559, -0.0853326, 0.750009, 0.0205676, -0.991201, -0.130761, 0, 0, 0)
+transform = Transform3D(0.715285, -0.576262, -0.395334, 0.688817, 0.485946, 0.537948, -0.117888, -0.657099, 0.744529, 0, 0, 0)
 rotation_order = 4
 shadow_enabled = true
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.718889, -0.515814, -0.465976, 0.68836, 0.434972, 0.580482, -0.0967343, -0.738063, 0.667763, 0, 0, 0)
+transform = Transform3D(0.467195, 0.161264, -0.869323, 0.882968, -0.135989, 0.449303, -0.0457623, -0.977498, -0.205924, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 1, 0.6, 1)
 shadow_enabled = true
