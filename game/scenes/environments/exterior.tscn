@@ -45,9 +45,6 @@ background_mode = 2
 sky = SubResource("Sky_563lc")
 ambient_light_source = 1
 tonemap_mode = 2
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
 sdfgi_enabled = true
 
 [node name="ExteriorEnvironnement" type="Node3D" node_paths=PackedStringArray("environment", "sun", "moon")]
@@ -57,7 +54,6 @@ latitude = 49.86
 day_of_year = 240
 clouds_weight = 0.03
 time_scale = 0.02
-sun_base_enegry = 1.0
 environment = NodePath("WorldEnvironment")
 sun = NodePath("Sun")
 moon = NodePath("Moon")
@@ -66,16 +62,12 @@ moon = NodePath("Moon")
 transform = Transform3D(0.754567, 0.101192, -0.648374, 0.6559, -0.0853326, 0.750009, 0.0205676, -0.991201, -0.130761, 0, 0, 0)
 rotation_order = 4
 shadow_enabled = true
-shadow_opacity = 0.75
-shadow_blur = 5.0
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.718889, -0.515814, -0.465976, 0.68836, 0.434972, 0.580482, -0.0967343, -0.738063, 0.667763, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 1, 0.6, 1)
 shadow_enabled = true
-shadow_opacity = 0.25
-shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
