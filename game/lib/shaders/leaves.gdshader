@@ -47,5 +47,5 @@ void fragment() {
 	
 	BACKLIGHT = transmission.rgb;
 	vec4 gradient = texture(texture_gradient, vec2(height / total_height, 0.0));
-	ALBEDO = tex.rbg;
+	ALBEDO = tex.rbg * gradient.rgb;
 }

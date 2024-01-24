@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://cveoi4wev7y1x"]
 
-[ext_resource type="Shader" path="res://addons/proton_scatter/demos/assets/materials/leaves.gdshader" id="1_nxt00"]
+[ext_resource type="Shader" path="res://lib/shaders/leaves.gdshader" id="1_wl4x6"]
 [ext_resource type="Texture2D" uid="uid://cr7m26y2fh1bs" path="res://models/terrain/trees/tree_1/tree_1_Image_0.png" id="2_pg14l"]
 
 [sub_resource type="Gradient" id="Gradient_pookg"]
@@ -22,7 +22,7 @@ noise = SubResource("FastNoiseLite_t7o5y")
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_nxt00")
+shader = ExtResource("1_wl4x6")
 shader_parameter/alpha_scissor_threshold = 0.3
 shader_parameter/transmission = Color(0.745098, 0.741176, 0, 1)
 shader_parameter/total_height = 4.046

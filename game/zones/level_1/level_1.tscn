@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7xab8odfni8k"]
+[gd_scene load_steps=6 format=3 uid="uid://b7xab8odfni8k"]
 
 [ext_resource type="Script" path="res://lib/nodes/zone.gd" id="1_qpw7r"]
-[ext_resource type="PackedScene" uid="uid://bhhbfstyssdc6" path="res://scenes/environments/exterior.tscn" id="2_805r0"]
 [ext_resource type="Script" path="res://lib/nodes/spawn_point.gd" id="2_duvt7"]
 [ext_resource type="Terrain3DStorage" uid="uid://v7xdgnel22p4" path="res://zones/level_1/terrain.res" id="4_xlr5m"]
 [ext_resource type="Terrain3DMaterial" uid="uid://dugt7jahcee34" path="res://assets/materials/terrain/exterior_1.res" id="5_y2jxk"]
@@ -9,8 +8,6 @@
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_qpw7r")
-
-[node name="ExteriorEnvironnement" parent="." instance=ExtResource("2_805r0")]
 
 [node name="SpawnPoint" type="Node3D" parent="."]
 transform = Transform3D(-0.900857, 0, 0.434115, 0, 1, 0, -0.434115, 0, -0.900857, 10.6942, 0, 34.2445)
