@@ -57,7 +57,7 @@ func _input(event):
 		camera_collision[prev_camera].disabled = true
 		set_camera(current_camera)
 
-func set_camera(view:CameraView):
+func set_camera(_view:CameraView):
 		if (current_camera == CameraView.CAMERA_FPV):
 			_on_player_change_anim(GameState.player.anim.current_animation if GameState.player != null else Consts.ANIM_IDLE)
 		else:
