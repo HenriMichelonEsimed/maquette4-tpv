@@ -1,0 +1,174 @@
+{
+	"connections": [
+		{
+			"from": "image_2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 4
+		},
+		{
+			"from": "dirt",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 0
+		},
+		{
+			"from": "uniform",
+			"from_port": 0,
+			"to": "blend2",
+			"to_port": 1
+		},
+		{
+			"from": "image",
+			"from_port": 0,
+			"to": "blend2_2",
+			"to_port": 0
+		},
+		{
+			"from": "blend2",
+			"from_port": 0,
+			"to": "blend2_2",
+			"to_port": 1
+		},
+		{
+			"from": "blend2_2",
+			"from_port": 0,
+			"to": "Material",
+			"to_port": 0
+		}
+	],
+	"label": "Graph",
+	"longdesc": "",
+	"name": "@@322",
+	"node_position": {
+		"x": 0,
+		"y": 0
+	},
+	"nodes": [
+		{
+			"export_last_target": "Godot/Godot 4 Standard",
+			"export_paths": {
+				"Godot/Godot 4 Standard": "C:/Users/hmich/Documents/GitHub/forcal/game/models/characters/char_1/mat_body"
+			},
+			"name": "Material",
+			"node_position": {
+				"x": 389,
+				"y": -26
+			},
+			"parameters": {
+				"albedo_color": {
+					"a": 1,
+					"b": 1,
+					"g": 1,
+					"r": 1,
+					"type": "Color"
+				},
+				"ao": 1,
+				"depth_scale": 0.5,
+				"emission_energy": 1,
+				"flags_transparent": true,
+				"metallic": 0,
+				"normal": 1,
+				"roughness": 1,
+				"size": 11,
+				"sss": 1
+			},
+			"seed_int": 0,
+			"type": "material"
+		},
+		{
+			"name": "image",
+			"node_position": {
+				"x": -309,
+				"y": -40
+			},
+			"parameters": {
+				"clamp": false,
+				"fix_ar": false,
+				"image": "%PROJECT_PATH%/char_1_Ga_Skin_Body_Diffuse.png"
+			},
+			"seed_int": 0,
+			"type": "image"
+		},
+		{
+			"name": "uniform",
+			"node_position": {
+				"x": -271,
+				"y": 396
+			},
+			"parameters": {
+				"color": {
+					"a": 1,
+					"b": 0.111511,
+					"g": 0.229245,
+					"r": 0.339844,
+					"type": "Color"
+				}
+			},
+			"seed_int": 0,
+			"type": "uniform"
+		},
+		{
+			"name": "image_2",
+			"node_position": {
+				"x": 150,
+				"y": 437
+			},
+			"parameters": {
+				"clamp": false,
+				"fix_ar": false,
+				"image": "%PROJECT_PATH%/char_1_Ga_Skin_Body_Normal.png"
+			},
+			"seed_int": 0,
+			"type": "image"
+		},
+		{
+			"name": "dirt",
+			"node_position": {
+				"x": -240,
+				"y": 205
+			},
+			"parameters": {
+				"d_scale": 1,
+				"param0": 0,
+				"param1": 11
+			},
+			"seed_int": 0,
+			"type": "dirt"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2",
+			"node_position": {
+				"x": 3,
+				"y": 274
+			},
+			"parameters": {
+				"amount1": 0.5,
+				"blend_type1": 0
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		},
+		{
+			"generic_size": 1,
+			"name": "blend2_2",
+			"node_position": {
+				"x": 10,
+				"y": -2
+			},
+			"parameters": {
+				"amount1": 0.5,
+				"blend_type1": 0
+			},
+			"seed_int": 0,
+			"type": "blend2"
+		}
+	],
+	"parameters": {
+
+	},
+	"seed_int": 0,
+	"shortdesc": "",
+	"type": "graph"
+}
