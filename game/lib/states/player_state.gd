@@ -1,6 +1,7 @@
 class_name PlayerState extends State
 
-var zone_name:String = "level_test/level_test"
+var zone_name:String = "level_1/level_1"
+#var zone_name:String = "level_test/level_test"
 var position:Vector3 = Vector3.ZERO
 var rotation:Vector3 = Vector3.ZERO
 var camera_view:CameraPivot.CameraView = CameraPivot.CameraView.CAMERA_TPV
