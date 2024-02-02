@@ -13,6 +13,7 @@ sky_material = SubResource("ProceduralSkyMaterial_5b3rr")
 background_mode = 2
 sky = SubResource("Sky_g2oxu")
 ambient_light_source = 3
+ambient_light_energy = 1.5
 reflected_light_source = 1
 tonemap_mode = 2
 sdfgi_enabled = true

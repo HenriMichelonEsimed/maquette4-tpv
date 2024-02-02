@@ -89,6 +89,5 @@ minimum = 2
 
 [node name="Speed" type="Node" parent="."]
 script = ExtResource("5_mxa1g")
-dice_faces = 6
-modifier = -1
-minimum = 3
+dice_faces = 8
+minimum = 4
